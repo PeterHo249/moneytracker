@@ -9,8 +9,7 @@ target 'moneytracker' do
   pod 'ChameleonFramework', '~> 2.1'
   pod 'Onboard', '~> 2.3'
   pod 'Charts', '~> 3.1'
-  pod 'Firebase/Core'
-  pod 'Firebase/Database'
+  pod 'Macaw', '~> 0.9'
 
   target 'moneytrackerTests' do
     inherit! :search_paths
