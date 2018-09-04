@@ -1,0 +1,662 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D14A08ECFCC052B55A1ABF7 /* Pods_moneytrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67684A360B391146C3ACF1A5 /* Pods_moneytrackerTests.framework */; };
+		5DAD384520F71D39002E43F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD384420F71D39002E43F2 /* AppDelegate.swift */; };
+		5DAD384720F71D39002E43F2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD384620F71D39002E43F2 /* ViewController.swift */; };
+		5DAD384A20F71D39002E43F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAD384820F71D39002E43F2 /* Main.storyboard */; };
+		5DAD384C20F71D46002E43F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DAD384B20F71D46002E43F2 /* Assets.xcassets */; };
+		5DAD384F20F71D46002E43F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DAD384D20F71D46002E43F2 /* LaunchScreen.storyboard */; };
+		5DAD385A20F71D47002E43F2 /* moneytrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD385920F71D47002E43F2 /* moneytrackerTests.swift */; };
+		5DAD386B213E7B64002E43F2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5DAD386A213E7B63002E43F2 /* GoogleService-Info.plist */; };
+		6BB1AFBD55CF6B1DF409A4DF /* Pods_moneytracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3264674DD439913C8B21280E /* Pods_moneytracker.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5DAD385620F71D47002E43F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DAD383920F71D39002E43F2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5DAD384020F71D39002E43F2;
+			remoteInfo = moneytracker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3264674DD439913C8B21280E /* Pods_moneytracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moneytracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAD384120F71D39002E43F2 /* moneytracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moneytracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAD384420F71D39002E43F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5DAD384620F71D39002E43F2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5DAD384920F71D39002E43F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5DAD384B20F71D46002E43F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5DAD384E20F71D46002E43F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5DAD385020F71D46002E43F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DAD385520F71D47002E43F2 /* moneytrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = moneytrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DAD385920F71D47002E43F2 /* moneytrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moneytrackerTests.swift; sourceTree = "<group>"; };
+		5DAD385B20F71D47002E43F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DAD386A213E7B63002E43F2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		661A8E8B6CBE815630023929 /* Pods-moneytrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moneytrackerTests/Pods-moneytrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		67684A360B391146C3ACF1A5 /* Pods_moneytrackerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_moneytrackerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F8D10F17F9B9F676BF894C2 /* Pods-moneytracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moneytracker/Pods-moneytracker.debug.xcconfig"; sourceTree = "<group>"; };
+		B9610EF9997A6ED0C278A08D /* Pods-moneytracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-moneytracker/Pods-moneytracker.release.xcconfig"; sourceTree = "<group>"; };
+		C7F07BD3C5DC0676988E84DE /* Pods-moneytrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-moneytrackerTests/Pods-moneytrackerTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5DAD383E20F71D39002E43F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BB1AFBD55CF6B1DF409A4DF /* Pods_moneytracker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAD385220F71D47002E43F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D14A08ECFCC052B55A1ABF7 /* Pods_moneytrackerTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B3201EFC5349BC229D5A105 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F8D10F17F9B9F676BF894C2 /* Pods-moneytracker.debug.xcconfig */,
+				B9610EF9997A6ED0C278A08D /* Pods-moneytracker.release.xcconfig */,
+				661A8E8B6CBE815630023929 /* Pods-moneytrackerTests.debug.xcconfig */,
+				C7F07BD3C5DC0676988E84DE /* Pods-moneytrackerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5DAD383820F71D39002E43F2 = {
+			isa = PBXGroup;
+			children = (
+				5DAD384320F71D39002E43F2 /* moneytracker */,
+				5DAD385820F71D47002E43F2 /* moneytrackerTests */,
+				5DAD384220F71D39002E43F2 /* Products */,
+				4B3201EFC5349BC229D5A105 /* Pods */,
+				65769F203156729CB7B54305 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5DAD384220F71D39002E43F2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5DAD384120F71D39002E43F2 /* moneytracker.app */,
+				5DAD385520F71D47002E43F2 /* moneytrackerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5DAD384320F71D39002E43F2 /* moneytracker */ = {
+			isa = PBXGroup;
+			children = (
+				5DAD3867213E760C002E43F2 /* Controller */,
+				5DAD3866213E7605002E43F2 /* View */,
+				5DAD3865213E75F7002E43F2 /* Model */,
+				5DAD3864213E75ED002E43F2 /* Resource */,
+				5DAD384420F71D39002E43F2 /* AppDelegate.swift */,
+				5DAD385020F71D46002E43F2 /* Info.plist */,
+				5DAD386A213E7B63002E43F2 /* GoogleService-Info.plist */,
+			);
+			path = moneytracker;
+			sourceTree = "<group>";
+		};
+		5DAD385820F71D47002E43F2 /* moneytrackerTests */ = {
+			isa = PBXGroup;
+			children = (
+				5DAD385920F71D47002E43F2 /* moneytrackerTests.swift */,
+				5DAD385B20F71D47002E43F2 /* Info.plist */,
+			);
+			path = moneytrackerTests;
+			sourceTree = "<group>";
+		};
+		5DAD3864213E75ED002E43F2 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5DAD384B20F71D46002E43F2 /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		5DAD3865213E75F7002E43F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DAD3866213E7605002E43F2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5DAD384D20F71D46002E43F2 /* LaunchScreen.storyboard */,
+				5DAD384820F71D39002E43F2 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5DAD3867213E760C002E43F2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5DAD384620F71D39002E43F2 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		65769F203156729CB7B54305 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3264674DD439913C8B21280E /* Pods_moneytracker.framework */,
+				67684A360B391146C3ACF1A5 /* Pods_moneytrackerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5DAD384020F71D39002E43F2 /* moneytracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAD385E20F71D47002E43F2 /* Build configuration list for PBXNativeTarget "moneytracker" */;
+			buildPhases = (
+				238D35A4954C68E36E1A4D2B /* [CP] Check Pods Manifest.lock */,
+				5DAD383D20F71D39002E43F2 /* Sources */,
+				5DAD383E20F71D39002E43F2 /* Frameworks */,
+				5DAD383F20F71D39002E43F2 /* Resources */,
+				79F536A1791740AA63167A4B /* [CP] Embed Pods Frameworks */,
+				DCE6DE9FE2437D06FBB6E9F7 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = moneytracker;
+			productName = moneytracker;
+			productReference = 5DAD384120F71D39002E43F2 /* moneytracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5DAD385420F71D47002E43F2 /* moneytrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DAD386120F71D47002E43F2 /* Build configuration list for PBXNativeTarget "moneytrackerTests" */;
+			buildPhases = (
+				AC16ECE0FD73B67810626A70 /* [CP] Check Pods Manifest.lock */,
+				5DAD385120F71D47002E43F2 /* Sources */,
+				5DAD385220F71D47002E43F2 /* Frameworks */,
+				5DAD385320F71D47002E43F2 /* Resources */,
+				555B2DDA8355F7312E916F85 /* [CP] Embed Pods Frameworks */,
+				231F386B78C141C077CAFD1B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5DAD385720F71D47002E43F2 /* PBXTargetDependency */,
+			);
+			name = moneytrackerTests;
+			productName = moneytrackerTests;
+			productReference = 5DAD385520F71D47002E43F2 /* moneytrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5DAD383920F71D39002E43F2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Peter Ho";
+				TargetAttributes = {
+					5DAD384020F71D39002E43F2 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					5DAD385420F71D47002E43F2 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 5DAD384020F71D39002E43F2;
+					};
+				};
+			};
+			buildConfigurationList = 5DAD383C20F71D39002E43F2 /* Build configuration list for PBXProject "moneytracker" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5DAD383820F71D39002E43F2;
+			productRefGroup = 5DAD384220F71D39002E43F2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5DAD384020F71D39002E43F2 /* moneytracker */,
+				5DAD385420F71D47002E43F2 /* moneytrackerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5DAD383F20F71D39002E43F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAD384F20F71D46002E43F2 /* LaunchScreen.storyboard in Resources */,
+				5DAD384C20F71D46002E43F2 /* Assets.xcassets in Resources */,
+				5DAD386B213E7B64002E43F2 /* GoogleService-Info.plist in Resources */,
+				5DAD384A20F71D39002E43F2 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAD385320F71D47002E43F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		231F386B78C141C077CAFD1B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moneytrackerTests/Pods-moneytrackerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		238D35A4954C68E36E1A4D2B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-moneytracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		555B2DDA8355F7312E916F85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moneytrackerTests/Pods-moneytrackerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		79F536A1791740AA63167A4B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-moneytracker/Pods-moneytracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Onboard/Onboard.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Onboard.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moneytracker/Pods-moneytracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC16ECE0FD73B67810626A70 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-moneytrackerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCE6DE9FE2437D06FBB6E9F7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-moneytracker/Pods-moneytracker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5DAD383D20F71D39002E43F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAD384720F71D39002E43F2 /* ViewController.swift in Sources */,
+				5DAD384520F71D39002E43F2 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5DAD385120F71D47002E43F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DAD385A20F71D47002E43F2 /* moneytrackerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5DAD385720F71D47002E43F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5DAD384020F71D39002E43F2 /* moneytracker */;
+			targetProxy = 5DAD385620F71D47002E43F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5DAD384820F71D39002E43F2 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DAD384920F71D39002E43F2 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5DAD384D20F71D46002E43F2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5DAD384E20F71D46002E43F2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5DAD385C20F71D47002E43F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5DAD385D20F71D47002E43F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5DAD385F20F71D47002E43F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F8D10F17F9B9F676BF894C2 /* Pods-moneytracker.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C562YP6H2C;
+				INFOPLIST_FILE = moneytracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = peterho.moneytracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5DAD386020F71D47002E43F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B9610EF9997A6ED0C278A08D /* Pods-moneytracker.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C562YP6H2C;
+				INFOPLIST_FILE = moneytracker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = peterho.moneytracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5DAD386220F71D47002E43F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 661A8E8B6CBE815630023929 /* Pods-moneytrackerTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C562YP6H2C;
+				INFOPLIST_FILE = moneytrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = peterho.moneytrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moneytracker.app/moneytracker";
+			};
+			name = Debug;
+		};
+		5DAD386320F71D47002E43F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7F07BD3C5DC0676988E84DE /* Pods-moneytrackerTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C562YP6H2C;
+				INFOPLIST_FILE = moneytrackerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = peterho.moneytrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/moneytracker.app/moneytracker";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5DAD383C20F71D39002E43F2 /* Build configuration list for PBXProject "moneytracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAD385C20F71D47002E43F2 /* Debug */,
+				5DAD385D20F71D47002E43F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DAD385E20F71D47002E43F2 /* Build configuration list for PBXNativeTarget "moneytracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAD385F20F71D47002E43F2 /* Debug */,
+				5DAD386020F71D47002E43F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DAD386120F71D47002E43F2 /* Build configuration list for PBXNativeTarget "moneytrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DAD386220F71D47002E43F2 /* Debug */,
+				5DAD386320F71D47002E43F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5DAD383920F71D39002E43F2 /* Project object */;
+}

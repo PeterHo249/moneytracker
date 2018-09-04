@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>1032612689504-4ge9dbssgv2kqmmkbmi15pl9qdvth6ar.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1032612689504-4ge9dbssgv2kqmmkbmi15pl9qdvth6ar</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCofLChTYn7V7FRZyPGBJXgVD704pil6TY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1032612689504</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>peterho.moneytracker</string>
+	<key>PROJECT_ID</key>
+	<string>moneytracker-d64fd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>moneytracker-d64fd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1032612689504:ios:54d41c59f468fe8d</string>
+	<key>DATABASE_URL</key>
+	<string>https://moneytracker-d64fd.firebaseio.com</string>
+</dict>
+</plist>
