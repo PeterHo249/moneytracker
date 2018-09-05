@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		05DD3C17243AB0512872D152 /* Pods_moneytracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4217279620035212F480B88 /* Pods_moneytracker.framework */; };
+		5D54EA6F213FCF3D009CE003 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54EA6E213FCF3D009CE003 /* SummaryViewController.swift */; };
+		5D54EA71213FCF59009CE003 /* SavingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54EA70213FCF59009CE003 /* SavingViewController.swift */; };
+		5D54EA73213FCF74009CE003 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54EA72213FCF74009CE003 /* StatisticsViewController.swift */; };
+		5D54EA75213FCFE4009CE003 /* AddActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54EA74213FCFE4009CE003 /* AddActivityViewController.swift */; };
+		5D54EA77213FD0BD009CE003 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D54EA76213FD0BD009CE003 /* ActivityTableViewCell.swift */; };
 		5D668323213EB279000ACCC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D668322213EB279000ACCC7 /* AppDelegate.swift */; };
 		5D668328213EB27A000ACCC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D668326213EB27A000ACCC7 /* Main.storyboard */; };
 		5D66832B213EB27A000ACCC7 /* moneytracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D668329213EB27A000ACCC7 /* moneytracker.xcdatamodeld */; };
@@ -35,6 +40,11 @@
 /* Begin PBXFileReference section */
 		3432956D2FCC61F01DB3EECE /* Pods-moneytrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moneytrackerTests/Pods-moneytrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		44C83FCF76DC59792E5EB6EF /* Pods-moneytracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-moneytracker/Pods-moneytracker.release.xcconfig"; sourceTree = "<group>"; };
+		5D54EA6E213FCF3D009CE003 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		5D54EA70213FCF59009CE003 /* SavingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingViewController.swift; sourceTree = "<group>"; };
+		5D54EA72213FCF74009CE003 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		5D54EA74213FCFE4009CE003 /* AddActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityViewController.swift; sourceTree = "<group>"; };
+		5D54EA76213FD0BD009CE003 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		5D66831F213EB279000ACCC7 /* moneytracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moneytracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D668322213EB279000ACCC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D668327213EB27A000ACCC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +172,11 @@
 			isa = PBXGroup;
 			children = (
 				5D66834E213F96D7000ACCC7 /* EnumDict.swift */,
+				5D54EA6E213FCF3D009CE003 /* SummaryViewController.swift */,
+				5D54EA70213FCF59009CE003 /* SavingViewController.swift */,
+				5D54EA72213FCF74009CE003 /* StatisticsViewController.swift */,
+				5D54EA74213FCFE4009CE003 /* AddActivityViewController.swift */,
+				5D54EA76213FD0BD009CE003 /* ActivityTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -400,12 +415,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D668323213EB279000ACCC7 /* AppDelegate.swift in Sources */,
+				5D54EA73213FCF74009CE003 /* StatisticsViewController.swift in Sources */,
+				5D54EA77213FD0BD009CE003 /* ActivityTableViewCell.swift in Sources */,
 				5D66832B213EB27A000ACCC7 /* moneytracker.xcdatamodeld in Sources */,
 				5D66834D213EC361000ACCC7 /* DB.swift in Sources */,
+				5D54EA6F213FCF3D009CE003 /* SummaryViewController.swift in Sources */,
 				5D66834B213EC15D000ACCC7 /* CoreDataStack.swift in Sources */,
 				5D66835B213F96D7000ACCC7 /* FinAct+CoreDataProperties.swift in Sources */,
 				5D66835A213F96D7000ACCC7 /* FinAct+CoreDataClass.swift in Sources */,
 				5D66834F213F96D7000ACCC7 /* EnumDict.swift in Sources */,
+				5D54EA75213FCFE4009CE003 /* AddActivityViewController.swift in Sources */,
+				5D54EA71213FCF59009CE003 /* SavingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
