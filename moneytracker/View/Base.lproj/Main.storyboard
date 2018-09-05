@@ -116,13 +116,16 @@
                         <outlet property="oneMonthPieChart" destination="Z3k-vT-j7D" id="NFd-YC-EGh"/>
                         <outlet property="oneMonthTextField" destination="UYO-zb-1Nd" id="4kC-ph-kel"/>
                         <outlet property="overviewBarChart" destination="gb1-J8-emC" id="Z1U-mL-oCB"/>
-                        <outlet property="tapGestureRecognizer" destination="YhD-08-LLR" id="gbQ-pK-oIN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWn-pj-W0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="YhD-08-LLR"/>
+                <tapGestureRecognizer id="YhD-08-LLR">
+                    <connections>
+                        <action selector="onTapRegconized:" destination="0hl-ZY-O8S" id="lxD-y0-hZo"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="227" y="828"/>
+            <point key="canvasLocation" x="1148" y="1225"/>
         </scene>
         <!--Summary-->
         <scene sceneID="nDK-6G-XPF">
@@ -316,7 +319,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4za-ms-Cnp"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="lQ3-Wr-tQD" appends="YES" id="kQx-Ni-KUK"/>
+                            <outletCollection property="gestureRecognizers" destination="dDb-Od-4NW" appends="YES" id="jCb-XX-P58"/>
                         </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Summary" id="gCa-oe-UEx"/>
@@ -334,12 +337,15 @@
                         <outlet property="budgetLabel" destination="ncM-bu-3Kb" id="Xxw-hs-6K2"/>
                         <outlet property="changeBudgetButton" destination="FWb-un-Grw" id="8MU-gv-sf5"/>
                         <outlet property="endingTimeTextField" destination="yF1-dc-FA2" id="Z5F-FM-c7i"/>
-                        <outlet property="tapGestureRecognizer" destination="lQ3-Wr-tQD" id="e4z-iu-a1I"/>
                         <outlet property="typeCateTextField" destination="yIY-j7-W6o" id="jIN-g8-dBE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlb-O1-vHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="lQ3-Wr-tQD"/>
+                <tapGestureRecognizer id="dDb-Od-4NW">
+                    <connections>
+                        <action selector="onTapRecognized:" destination="TAN-eI-HEy" id="Hl9-JD-q6B"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1147.5" y="-118.30985915492958"/>
         </scene>
