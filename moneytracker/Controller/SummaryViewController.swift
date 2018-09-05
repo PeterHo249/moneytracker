@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SummaryViewController: UIViewController {
 
@@ -21,15 +22,14 @@ class SummaryViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var typeCateTextField: UITextField!
+    @IBOutlet weak var beginningTimeTextField: UITextField!
+    @IBOutlet weak var endingTimeTextField: UITextField!
+    @IBOutlet weak var budgetLabel: UILabel!
+    @IBOutlet weak var changeBudgetButton: UIButton!
+    @IBOutlet weak var activityTableView: UITableView!
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+    
 
 }

@@ -50,7 +50,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3k-vT-j7D">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3k-vT-j7D" customClass="PieChartView" customModule="Charts">
                                 <rect key="frame" x="5" y="165" width="310" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -69,7 +69,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-J8-emC">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-J8-emC" customClass="BarChartView" customModule="Charts">
                                 <rect key="frame" x="10" y="320.5" width="300" height="188.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -81,6 +81,7 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="UYO-zb-1Nd" firstAttribute="top" secondItem="yfZ-63-BpY" secondAttribute="bottom" constant="10" id="4QD-H3-0UY"/>
                             <constraint firstItem="Z3k-vT-j7D" firstAttribute="centerX" secondItem="6AA-s7-4oE" secondAttribute="centerX" id="609-xv-6EK"/>
@@ -104,10 +105,22 @@
                             <constraint firstItem="l6R-w8-ydC" firstAttribute="centerY" secondItem="3sM-ae-U0w" secondAttribute="centerY" id="uUA-Wp-ndU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6AA-s7-4oE"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="YhD-08-LLR" appends="YES" id="xvx-TN-uYQ"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Statistics" id="Eos-oG-mqC"/>
+                    <connections>
+                        <outlet property="beginningTimeTextField" destination="l6R-w8-ydC" id="kqU-5x-EZX"/>
+                        <outlet property="endingTimeTextField" destination="StQ-aD-LeM" id="tR6-QM-XQb"/>
+                        <outlet property="oneMonthPieChart" destination="Z3k-vT-j7D" id="NFd-YC-EGh"/>
+                        <outlet property="oneMonthTextField" destination="UYO-zb-1Nd" id="4kC-ph-kel"/>
+                        <outlet property="overviewBarChart" destination="gb1-J8-emC" id="Z1U-mL-oCB"/>
+                        <outlet property="tapGestureRecognizer" destination="YhD-08-LLR" id="gbQ-pK-oIN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BWn-pj-W0D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="YhD-08-LLR"/>
             </objects>
             <point key="canvasLocation" x="227" y="828"/>
         </scene>
@@ -206,8 +219,20 @@
                                                 <constraint firstItem="KFp-eJ-7Yh" firstAttribute="top" secondItem="glT-2x-Zcl" secondAttribute="top" constant="5" id="xtA-t3-ClL"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="nnY-Pd-U1l" id="gvX-AE-fCF"/>
+                                            <outlet property="costLabel" destination="Mmi-05-d1I" id="DTl-XA-uxz"/>
+                                            <outlet property="dateLabel" destination="qB7-66-2oK" id="f7k-Jy-fEt"/>
+                                            <outlet property="indicatorView" destination="KFp-eJ-7Yh" id="re4-vT-O0m"/>
+                                            <outlet property="nameLabel" destination="IOs-Sh-edX" id="yMv-ak-dpB"/>
+                                            <outlet property="typeLabel" destination="gpr-1G-p5g" id="f7r-5D-AAI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TAN-eI-HEy" id="dbl-D2-1nV"/>
+                                    <outlet property="delegate" destination="TAN-eI-HEy" id="BTE-gD-GfU"/>
+                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gn-0p-tWK">
                                 <rect key="frame" x="20" y="146" width="43" height="21"/>
@@ -260,6 +285,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="yF1-dc-FA2" firstAttribute="centerY" secondItem="7Gn-0p-tWK" secondAttribute="centerY" id="0Ds-ra-aUB"/>
                             <constraint firstItem="yIY-j7-W6o" firstAttribute="centerY" secondItem="Ksc-xI-6RI" secondAttribute="centerY" id="3mm-EF-YYZ"/>
@@ -289,6 +315,9 @@
                             <constraint firstItem="iCN-OW-JsM" firstAttribute="centerY" secondItem="7Gn-0p-tWK" secondAttribute="centerY" id="z9w-OE-OC5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4za-ms-Cnp"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="lQ3-Wr-tQD" appends="YES" id="kQx-Ni-KUK"/>
+                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Summary" id="gCa-oe-UEx"/>
                     <navigationItem key="navigationItem" title="Title" id="zmd-CC-yP6">
@@ -298,8 +327,19 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="activityTableView" destination="6Hm-au-cTD" id="e5W-gd-ynh"/>
+                        <outlet property="balanceLabel" destination="KTK-tz-obk" id="32L-mX-edc"/>
+                        <outlet property="beginningTimeTextField" destination="yiC-eK-DGD" id="BK7-Zk-lvq"/>
+                        <outlet property="budgetLabel" destination="ncM-bu-3Kb" id="Xxw-hs-6K2"/>
+                        <outlet property="changeBudgetButton" destination="FWb-un-Grw" id="8MU-gv-sf5"/>
+                        <outlet property="endingTimeTextField" destination="yF1-dc-FA2" id="Z5F-FM-c7i"/>
+                        <outlet property="tapGestureRecognizer" destination="lQ3-Wr-tQD" id="e4z-iu-a1I"/>
+                        <outlet property="typeCateTextField" destination="yIY-j7-W6o" id="jIN-g8-dBE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlb-O1-vHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="lQ3-Wr-tQD"/>
             </objects>
             <point key="canvasLocation" x="1147.5" y="-118.30985915492958"/>
         </scene>
