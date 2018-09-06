@@ -15,6 +15,24 @@ class AddActivityViewController: FormViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        form +++ Section("Acticity Info")
+            <<< TextRow() {
+                $0.title = "Name"
+                $0.placeholder = "Enter activity title"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+            <<< IntRow() {
+                $0.title = "Cost"
+                $0.placeholder = "Enter money cost"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+            <<< DateRow() {
+                $0.title = "Date"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,15 +40,5 @@ class AddActivityViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

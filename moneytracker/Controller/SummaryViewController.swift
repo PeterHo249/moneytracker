@@ -22,7 +22,7 @@ class SummaryViewController: UIViewController {
         typeCatePicker.dataSource = self
         let typeCateToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let typeCateDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        let typeCateDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onTypeCateDoneButtonPushed))
         typeCateToolbar.items = [flexibleSpace, typeCateDoneButton]
         typeCateTextField.inputAccessoryView = typeCateToolbar
         typeCateTextField.inputView = typeCatePicker
@@ -31,7 +31,7 @@ class SummaryViewController: UIViewController {
         beginningMonthYearPicker.delegate = self
         beginningMonthYearPicker.dataSource = self
         let beginningToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        let beginningDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        let beginningDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onBeginningMonthDoneButtonPushed))
         beginningToolbar.items = [flexibleSpace, beginningDoneButton]
         beginningTimeTextField.inputAccessoryView = beginningToolbar
         beginningTimeTextField.inputView = beginningMonthYearPicker
@@ -40,12 +40,20 @@ class SummaryViewController: UIViewController {
         endingMonthYearPicker.delegate = self
         endingMonthYearPicker.dataSource = self
         let endingToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        let endingDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        let endingDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onEndingMonthDoneButtonPushed))
         endingToolbar.items = [flexibleSpace, endingDoneButton]
         endingTimeTextField.inputAccessoryView = endingToolbar
         endingTimeTextField.inputView = endingMonthYearPicker
         
         cates = cateRef[0]
+        
+        // Init value for text field
+        typeCateTextField.text = "All, All"
+        let now = Date()
+        let calendar = Calendar.current
+        let currentMonth = "\(calendar.component(.month, from: now))/\(calendar.component(.year, from: now))"
+        beginningTimeTextField.text = currentMonth
+        endingTimeTextField.text = currentMonth
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,6 +86,26 @@ class SummaryViewController: UIViewController {
         endingTimeTextField.resignFirstResponder()
     }
     
+    @objc func onTypeCateDoneButtonPushed() {
+        let type = typeRef[typeCatePicker.selectedRow(inComponent: 0)]
+        let cate = cates[typeCatePicker.selectedRow(inComponent: 1)]
+        typeCateTextField.text = "\(type), \(cate)"
+        typeCateTextField.resignFirstResponder()
+    }
+    
+    @objc func onBeginningMonthDoneButtonPushed() {
+        let month = beginningMonthYearPicker.selectedRow(inComponent: 0) + 1
+        let year = beginningMonthYearPicker.selectedRow(inComponent: 1) + 2018
+        beginningTimeTextField.text = "\(month)/\(year)"
+        beginningTimeTextField.resignFirstResponder()
+    }
+    
+    @objc func onEndingMonthDoneButtonPushed() {
+        let month = endingMonthYearPicker.selectedRow(inComponent: 0) + 1
+        let year = endingMonthYearPicker.selectedRow(inComponent: 1) + 2018
+        endingTimeTextField.text = "\(month)/\(year)"
+        endingTimeTextField.resignFirstResponder()
+    }
     
     // MARK: Helper
 }
