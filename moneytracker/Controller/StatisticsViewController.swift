@@ -16,14 +16,33 @@ class StatisticsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        monthYearInputPickerView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 130))
-        monthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 320, height: 130))
-        monthYearPicker.delegate = self
-        monthYearPicker.dataSource = self
-        monthYearInputPickerView.addSubview(monthYearPicker)
-        oneMonthTextField.inputView = monthYearInputPickerView
-        beginningTimeTextField.inputView = monthYearInputPickerView
-        endingTimeTextField.inputView = monthYearInputPickerView
+        oneMonthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
+        oneMonthYearPicker.delegate = self
+        oneMonthYearPicker.dataSource = self
+        let oneMonthToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let oneMonthDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        oneMonthToolbar.items = [flexibleSpace, oneMonthDoneButton]
+        oneMonthTextField.inputAccessoryView = oneMonthToolbar
+        oneMonthTextField.inputView = oneMonthYearPicker
+        
+        beginningMonthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
+        beginningMonthYearPicker.delegate = self
+        beginningMonthYearPicker.dataSource = self
+        let beginningToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        let beginningDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        beginningToolbar.items = [flexibleSpace, beginningDoneButton]
+        beginningTimeTextField.inputAccessoryView = beginningToolbar
+        beginningTimeTextField.inputView = beginningMonthYearPicker
+        
+        endingMonthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
+        endingMonthYearPicker.delegate = self
+        endingMonthYearPicker.dataSource = self
+        let endingToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        let endingDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        endingToolbar.items = [flexibleSpace, endingDoneButton]
+        endingTimeTextField.inputAccessoryView = endingToolbar
+        endingTimeTextField.inputView = endingMonthYearPicker
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,8 +57,12 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var endingTimeTextField: UITextField!
     @IBOutlet weak var overviewBarChart: BarChartView!
     
-    var monthYearInputPickerView: UIView!
-    var monthYearPicker: UIPickerView!
+    var oneMonthYearInputPickerView: UIView!
+    var oneMonthYearPicker: UIPickerView!
+    var beginningMonthYearInputPickerView: UIView!
+    var beginningMonthYearPicker: UIPickerView!
+    var endingMonthYearInputPickerView: UIView!
+    var endingMonthYearPicker: UIPickerView!
     
     // MARK - Action
     @IBAction func onTapRegconized(_ sender: UITapGestureRecognizer) {

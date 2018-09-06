@@ -17,20 +17,33 @@ class SummaryViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         // Init picker view
-        typeCateInputPickerView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 130))
-        typeCatePicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 320, height: 130))
+        typeCatePicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
         typeCatePicker.delegate = self
         typeCatePicker.dataSource = self
-        typeCateInputPickerView.addSubview(typeCatePicker)
-        typeCateTextField.inputView = typeCateInputPickerView
+        let typeCateToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        let typeCateDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        typeCateToolbar.items = [flexibleSpace, typeCateDoneButton]
+        typeCateTextField.inputAccessoryView = typeCateToolbar
+        typeCateTextField.inputView = typeCatePicker
         
-        monthYearInputPickerView = UIView(frame: CGRect(x: 0, y: 100, width: 320, height: 130))
-        monthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 320, height: 130))
-        monthYearPicker.delegate = self
-        monthYearPicker.dataSource = self
-        monthYearInputPickerView.addSubview(monthYearPicker)
-        beginningTimeTextField.inputView = monthYearInputPickerView
-        endingTimeTextField.inputView = monthYearInputPickerView
+        beginningMonthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
+        beginningMonthYearPicker.delegate = self
+        beginningMonthYearPicker.dataSource = self
+        let beginningToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        let beginningDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        beginningToolbar.items = [flexibleSpace, beginningDoneButton]
+        beginningTimeTextField.inputAccessoryView = beginningToolbar
+        beginningTimeTextField.inputView = beginningMonthYearPicker
+        
+        endingMonthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
+        endingMonthYearPicker.delegate = self
+        endingMonthYearPicker.dataSource = self
+        let endingToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        let endingDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+        endingToolbar.items = [flexibleSpace, endingDoneButton]
+        endingTimeTextField.inputAccessoryView = endingToolbar
+        endingTimeTextField.inputView = endingMonthYearPicker
         
         cates = cateRef[0]
     }
@@ -49,10 +62,9 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var changeBudgetButton: UIButton!
     @IBOutlet weak var activityTableView: UITableView!
     
-    var typeCateInputPickerView: UIView!
     var typeCatePicker: UIPickerView!
-    var monthYearInputPickerView: UIView!
-    var monthYearPicker: UIPickerView!
+    var beginningMonthYearPicker: UIPickerView!
+    var endingMonthYearPicker: UIPickerView!
     
     // MARK: Variable
     let typeRef = ["All", "Income", "Expense"]
@@ -76,7 +88,7 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == monthYearPicker {
+        if pickerView == beginningMonthYearPicker || pickerView == endingMonthYearPicker {
             if component == 0 {
                 return 12
             } else {
@@ -92,7 +104,7 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == monthYearPicker {
+        if pickerView == beginningMonthYearPicker || pickerView == endingMonthYearPicker {
             if component == 0 {
                 return "\(row + 1)"
             } else {

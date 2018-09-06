@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="drq-pn-UKA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wMW-ux-WNl">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,13 +36,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Finance Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfZ-63-BpY">
-                                <rect key="frame" x="80" y="94" width="160" height="21"/>
+                                <rect key="frame" x="80" y="50" width="160" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UYO-zb-1Nd">
-                                <rect key="frame" x="60.5" y="125" width="200" height="30"/>
+                                <rect key="frame" x="60.5" y="81" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="aMr-Ud-P0C"/>
                                 </constraints>
@@ -51,30 +51,30 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3k-vT-j7D" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="5" y="165" width="310" height="100"/>
+                                <rect key="frame" x="5" y="121" width="310" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="oQf-Gf-ibI"/>
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="StQ-aD-LeM">
-                                <rect key="frame" x="174" y="280.5" width="136" height="30"/>
+                                <rect key="frame" x="174" y="236.5" width="136" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sM-ae-U0w">
-                                <rect key="frame" x="156" y="285" width="8" height="21"/>
+                                <rect key="frame" x="156" y="241" width="8" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-J8-emC" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="10" y="320.5" width="300" height="188.5"/>
+                                <rect key="frame" x="10" y="276.5" width="300" height="232.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6R-w8-ydC">
-                                <rect key="frame" x="10" y="280.5" width="136" height="30"/>
+                                <rect key="frame" x="10" y="236.5" width="136" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -323,8 +323,8 @@
                         </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Summary" id="gCa-oe-UEx"/>
-                    <navigationItem key="navigationItem" title="Title" id="zmd-CC-yP6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Hwn-gd-bUM">
+                    <navigationItem key="navigationItem" title="Summary" id="zmd-CC-yP6">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="Hwn-gd-bUM">
                             <connections>
                                 <segue destination="9cR-X2-LEo" kind="show" id="G5h-z8-SvA"/>
                             </connections>
@@ -375,30 +375,31 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="TAN-eI-HEy" kind="relationship" relationship="viewControllers" id="8Am-qN-qbF"/>
+                        <segue destination="drq-pn-UKA" kind="relationship" relationship="viewControllers" id="dpw-Kc-z3X"/>
                         <segue destination="fBc-sS-IrF" kind="relationship" relationship="viewControllers" id="ufN-rP-u2l"/>
                         <segue destination="0hl-ZY-O8S" kind="relationship" relationship="viewControllers" id="ww9-PP-l5P"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lCm-vB-ROF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="112"/>
+            <point key="canvasLocation" x="-662" y="127"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Summary-->
         <scene sceneID="Fgh-uU-sU4">
             <objects>
                 <navigationController id="drq-pn-UKA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Summary" id="paF-ks-QNX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z2R-4e-oh2">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="wMW-ux-WNl" kind="relationship" relationship="rootViewController" id="9bR-De-jLT"/>
+                        <segue destination="TAN-eI-HEy" kind="relationship" relationship="rootViewController" id="9iS-XX-uJO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6Q-a2-hBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-504" y="113"/>
+            <point key="canvasLocation" x="399" y="-118"/>
         </scene>
     </scenes>
 </document>
