@@ -106,9 +106,44 @@ class SummaryViewController: UIViewController {
         endingTimeTextField.resignFirstResponder()
     }
     
+    weak var actionToEnable: UIAlertAction!
+    
     @IBAction func onChangeButtonPushed(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Budget", message: "Enter your budget for a month.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "e.g. 700000 (0 if not)"
+            textField.keyboardType = .numberPad
+            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
+            
+        })
+        
+        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (_) -> Void in
+            let textfield = alert.textFields!.first!
+            
+            print(textfield.text ?? "Nothing")
+        })
+        
+        alert.addAction(cancel)
+        alert.addAction(action)
+        
+        self.actionToEnable = action
+        action.isEnabled = false
+        self.present(alert, animated: true, completion: nil)
     }
     
+    @objc func textChanged(_ sender:UITextField) {
+        if Int(sender.text!) != nil {
+            self.actionToEnable?.isEnabled  = true
+        } else {
+            self.actionToEnable?.isEnabled = false
+        }
+    }
     
     // MARK: Helper
 }
