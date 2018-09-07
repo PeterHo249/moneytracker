@@ -67,7 +67,6 @@ class SummaryViewController: UIViewController {
     @IBOutlet weak var beginningTimeTextField: UITextField!
     @IBOutlet weak var endingTimeTextField: UITextField!
     @IBOutlet weak var budgetLabel: UILabel!
-    @IBOutlet weak var changeBudgetButton: UIButton!
     @IBOutlet weak var activityTableView: UITableView!
     
     var typeCatePicker: UIPickerView!
@@ -106,6 +105,10 @@ class SummaryViewController: UIViewController {
         endingTimeTextField.text = "\(month)/\(year)"
         endingTimeTextField.resignFirstResponder()
     }
+    
+    @IBAction func onChangeButtonPushed(_ sender: UIButton) {
+    }
+    
     
     // MARK: Helper
 }

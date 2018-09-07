@@ -168,7 +168,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFp-eJ-7Yh">
+                                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFp-eJ-7Yh">
                                                     <rect key="frame" x="5" y="5" width="5" height="70"/>
                                                     <color key="backgroundColor" red="1" green="0.26432063490000002" blue="0.12925855410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -282,9 +282,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWb-un-Grw">
-                                <rect key="frame" x="247" y="172" width="53" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTb-je-45O">
+                                <rect key="frame" x="247" y="172.5" width="53" height="30"/>
                                 <state key="normal" title="Change"/>
+                                <connections>
+                                    <action selector="onChangeButtonPushed:" destination="TAN-eI-HEy" eventType="touchUpInside" id="3gn-si-WWJ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -305,11 +308,11 @@
                             <constraint firstItem="ncM-bu-3Kb" firstAttribute="centerY" secondItem="g1s-qj-l9F" secondAttribute="centerY" id="Rzx-oF-h15"/>
                             <constraint firstItem="Ksc-xI-6RI" firstAttribute="top" secondItem="JYH-Hp-MAS" secondAttribute="bottom" constant="10" id="S2A-LA-X3D"/>
                             <constraint firstItem="JYH-Hp-MAS" firstAttribute="top" secondItem="4za-ms-Cnp" secondAttribute="top" constant="20" id="T7u-8x-eTt"/>
-                            <constraint firstItem="FWb-un-Grw" firstAttribute="centerY" secondItem="g1s-qj-l9F" secondAttribute="centerY" id="dfw-62-UOJ"/>
-                            <constraint firstItem="4za-ms-Cnp" firstAttribute="trailing" secondItem="FWb-un-Grw" secondAttribute="trailing" constant="20" id="eRs-hI-SoE"/>
+                            <constraint firstItem="4za-ms-Cnp" firstAttribute="trailing" secondItem="xTb-je-45O" secondAttribute="trailing" constant="20" id="UvE-NN-r1o"/>
                             <constraint firstItem="KTK-tz-obk" firstAttribute="leading" secondItem="JYH-Hp-MAS" secondAttribute="trailing" constant="10" id="f7A-HF-rZI"/>
                             <constraint firstItem="ncM-bu-3Kb" firstAttribute="leading" secondItem="g1s-qj-l9F" secondAttribute="trailing" constant="5" id="gIw-4f-iur"/>
                             <constraint firstItem="g1s-qj-l9F" firstAttribute="leading" secondItem="4za-ms-Cnp" secondAttribute="leading" constant="20" id="h9S-Lc-F5i"/>
+                            <constraint firstItem="xTb-je-45O" firstAttribute="centerY" secondItem="ncM-bu-3Kb" secondAttribute="centerY" id="kcv-R9-4wB"/>
                             <constraint firstItem="7Gn-0p-tWK" firstAttribute="top" secondItem="Ksc-xI-6RI" secondAttribute="bottom" constant="10" id="lbl-hx-NsH"/>
                             <constraint firstItem="4za-ms-Cnp" firstAttribute="trailing" secondItem="yIY-j7-W6o" secondAttribute="trailing" constant="20" id="lkG-rq-Tkl"/>
                             <constraint firstItem="yIY-j7-W6o" firstAttribute="leading" secondItem="Ksc-xI-6RI" secondAttribute="trailing" constant="5" id="nbq-v9-y05"/>
@@ -335,7 +338,6 @@
                         <outlet property="balanceLabel" destination="KTK-tz-obk" id="32L-mX-edc"/>
                         <outlet property="beginningTimeTextField" destination="yiC-eK-DGD" id="BK7-Zk-lvq"/>
                         <outlet property="budgetLabel" destination="ncM-bu-3Kb" id="Xxw-hs-6K2"/>
-                        <outlet property="changeBudgetButton" destination="FWb-un-Grw" id="8MU-gv-sf5"/>
                         <outlet property="endingTimeTextField" destination="yF1-dc-FA2" id="Z5F-FM-c7i"/>
                         <outlet property="typeCateTextField" destination="yIY-j7-W6o" id="jIN-g8-dBE"/>
                     </connections>
