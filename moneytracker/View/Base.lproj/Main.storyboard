@@ -349,10 +349,10 @@
             </objects>
             <point key="canvasLocation" x="1147.5" y="-118.30985915492958"/>
         </scene>
-        <!--Add Activity-->
+        <!--Activity Detail-->
         <scene sceneID="dvt-NP-SN2">
             <objects>
-                <viewController title="Add Activity" id="9cR-X2-LEo" customClass="AddActivityViewController" customModule="moneytracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Activity Detail" id="9cR-X2-LEo" customClass="AddActivityViewController" customModule="moneytracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oyy-wD-ner">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
