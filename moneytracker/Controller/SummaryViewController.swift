@@ -263,4 +263,13 @@ extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            DB.MOC.delete(activities[indexPath.row])
+            activities.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            DB.save()
+        }
+    }
+    
 }
