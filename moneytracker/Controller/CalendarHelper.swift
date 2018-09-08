@@ -87,4 +87,47 @@ class CalendarHelper {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.string(from: date)
     }
+    
+    static func getBiginningDate(ofMonth month: String) -> NSDate {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = .current
+        dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
+        
+        let result:NSDate = dateFormatter.date(from: "00:00 01/\(month)")! as NSDate
+        return result
+    }
+    
+    static func isLeapYear(year: Int) -> Bool {
+        if year % 400 == 0 {
+            return true
+        }
+        
+        if year % 100 == 0 {
+            return false
+        }
+        
+        if year % 4 == 0 {
+            return true
+        }
+        
+        return false
+    }
+    
+    static func getEndingDate(ofMonth month: String) -> NSDate {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = .current
+        dateFormatter.dateFormat = "HH:mm dd/MM/yyyy"
+        
+        let numDayRef = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        let components = getCalendarComponents(fromString: month)
+        var dateString: String = ""
+        if isLeapYear(year: components[1]) && components[0] == 2 {
+            dateString = "23:59 29/\(month)"
+        } else {
+            dateString = "23:59 \(numDayRef[components[0]])/\(month)"
+        }
+        
+        let result: NSDate = dateFormatter.date(from: dateString)! as NSDate
+        return result
+    }
 }

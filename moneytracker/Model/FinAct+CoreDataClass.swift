@@ -34,8 +34,13 @@ public class FinAct: NSManagedObject {
     static func fetchData(forMonth month: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        // Add predict
+        
         fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let beginningDate = CalendarHelper.getBiginningDate(ofMonth: month)
+        let endingDate = CalendarHelper.getEndingDate(ofMonth: month)
+        
+        fetchRequest.predicate = NSPredicate(format: "date >= %@ && date <= %@", argumentArray: [beginningDate, endingDate])
         do {
             let list = try DB.MOC.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [NSManagedObject]
             return list
@@ -49,8 +54,13 @@ public class FinAct: NSManagedObject {
     static func fetchData(forMonth month: String, type: String, cate: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        // Add predict
+        
         fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let beginningDate = CalendarHelper.getBiginningDate(ofMonth: month)
+        let endingDate = CalendarHelper.getEndingDate(ofMonth: month)
+        
+        fetchRequest.predicate = NSPredicate(format: "date >= %@ && date <= %@ && type == %@ && category == %@", argumentArray: [beginningDate, endingDate, type, cate])
         do {
             let list = try DB.MOC.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [NSManagedObject]
             return list
@@ -64,8 +74,14 @@ public class FinAct: NSManagedObject {
     static func fetchData(fromMonth beginningMonth: String, toMonth endingMonth: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        // Add predict
+        
         fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let beginningDate = CalendarHelper.getBiginningDate(ofMonth: beginningMonth)
+        let endingDate = CalendarHelper.getEndingDate(ofMonth: endingMonth)
+        
+        fetchRequest.predicate = NSPredicate(format: "date >= %@ && date <= %@", argumentArray: [beginningDate, endingDate])
+        
         do {
             let list = try DB.MOC.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [NSManagedObject]
             return list
@@ -79,8 +95,14 @@ public class FinAct: NSManagedObject {
     static func fetchData(fromMonth beginningMonth: String, toMonth endingMonth: String, type: String, cate: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        // Add predict
+
         fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let beginningDate = CalendarHelper.getBiginningDate(ofMonth: beginningMonth)
+        let endingDate = CalendarHelper.getEndingDate(ofMonth: endingMonth)
+        
+        fetchRequest.predicate = NSPredicate(format: "date >= %@ && date <= %@ && type == %@ && category == %@", argumentArray: [beginningDate, endingDate, type, cate])
+        
         do {
             let list = try DB.MOC.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [NSManagedObject]
             return list
