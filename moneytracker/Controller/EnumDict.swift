@@ -73,3 +73,10 @@ enum ExpenseCate:Int {
         return ExpenseCate.Food
     }
 }
+
+enum MyComparisionResult {
+    case less
+    case equal
+    case greater
+    case notCompare
+}

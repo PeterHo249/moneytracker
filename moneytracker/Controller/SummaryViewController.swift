@@ -48,7 +48,7 @@ class SummaryViewController: UIViewController {
         cates = cateRef[0]
         
         // Init value for text field
-        typeCateTextField.text = "All, All"
+        typeCateTextField.text = "All"
         let now = Date()
         let calendar = Calendar.current
         let currentMonth = "\(calendar.component(.month, from: now))/\(calendar.component(.year, from: now))"
@@ -59,6 +59,14 @@ class SummaryViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        activities = FinAct.all()
+        
+        activityTableView.reloadData()
     }
     
     // MARK: Outlet
@@ -72,6 +80,8 @@ class SummaryViewController: UIViewController {
     var typeCatePicker: UIPickerView!
     var beginningMonthYearPicker: UIPickerView!
     var endingMonthYearPicker: UIPickerView!
+    
+    var activities:[NSManagedObject] = []
     
     // MARK: Variable
     let typeRef = ["All", "Income", "Expense"]
@@ -88,7 +98,11 @@ class SummaryViewController: UIViewController {
     @objc func onTypeCateDoneButtonPushed() {
         let type = typeRef[typeCatePicker.selectedRow(inComponent: 0)]
         let cate = cates[typeCatePicker.selectedRow(inComponent: 1)]
-        typeCateTextField.text = "\(type), \(cate)"
+        if type == "All" {
+            typeCateTextField.text = "All"
+        } else {
+            typeCateTextField.text = "\(type), \(cate)"
+        }
         typeCateTextField.resignFirstResponder()
     }
     
@@ -112,7 +126,6 @@ class SummaryViewController: UIViewController {
         
         let alert = UIAlertController(title: "Budget", message: "Enter your budget for a month.", preferredStyle: UIAlertControllerStyle.alert)
         
-        
         alert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "e.g. 700000 (0 if not)"
             textField.keyboardType = .numberPad
@@ -122,7 +135,6 @@ class SummaryViewController: UIViewController {
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
             
         })
-        
         let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (_) -> Void in
             let textfield = alert.textFields!.first!
             
@@ -199,13 +211,18 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return activities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "ActivityTableViewCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell", for: indexPath)
+        (cell as! ActivityTableViewCell).loadContent(activity: activities[indexPath.row] as! FinAct)
+        print(cell)
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
 }

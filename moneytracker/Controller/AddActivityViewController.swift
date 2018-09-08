@@ -93,8 +93,29 @@ class AddActivityViewController: FormViewController {
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
         } else {
-            print("No error")
+            if isNew {
+                let newActicity = FinAct.create() as! FinAct
+                let descRow:TextRow = form.rowBy(tag: tags.descTag)!
+                newActicity.desc = descRow.value
+                let costRow:IntRow = form.rowBy(tag: tags.costTag)!
+                newActicity.cost = Int32(costRow.value!)
+                let dateRow:DateRow = form.rowBy(tag: tags.dateTag)!
+                newActicity.date = dateRow.value! as NSDate
+                let typeRow:PushRow<String> = form.rowBy(tag: tags.typeTag)!
+                newActicity.type = typeRow.value
+                let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
+                newActicity.category = cateRow.value
+            } else {
+                
+            }
+            
+            DB.save()
+            self.navigationController?.popViewController(animated: true)
         }
     }
+    
+    // MARK: Variable
+    var sourceViewController: UIViewController!
+    var isNew = true
     
 }
