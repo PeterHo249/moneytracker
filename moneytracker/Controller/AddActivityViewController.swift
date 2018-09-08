@@ -74,6 +74,19 @@ class AddActivityViewController: FormViewController {
                 $0.validationOptions = .validatesOnDemand
             }
         
+        if !isNew {
+            let descRow:TextRow = form.rowBy(tag: tags.descTag)!
+            descRow.value = sourceData.desc
+            let costRow:IntRow = form.rowBy(tag: tags.costTag)!
+            costRow.value = Int(sourceData.cost)
+            let dateRow:DateRow = form.rowBy(tag: tags.dateTag)!
+            dateRow.value = sourceData.date! as Date
+            let typeRow:PushRow<String> = form.rowBy(tag: tags.typeTag)!
+            typeRow.value = sourceData.type
+            let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
+            cateRow.value = sourceData.category
+        }
+        
         // Init save button
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(onSaveButtonPushed))
     }
@@ -106,16 +119,27 @@ class AddActivityViewController: FormViewController {
                 let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
                 newActicity.category = cateRow.value
             } else {
-                
+                let descRow:TextRow = form.rowBy(tag: tags.descTag)!
+                sourceData.desc = descRow.value
+                let costRow:IntRow = form.rowBy(tag: tags.costTag)!
+                sourceData.cost = Int32(costRow.value!)
+                let dateRow:DateRow = form.rowBy(tag: tags.dateTag)!
+                sourceData.date = dateRow.value! as NSDate
+                let typeRow:PushRow<String> = form.rowBy(tag: tags.typeTag)!
+                sourceData.type = typeRow.value
+                let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
+                sourceData.category = cateRow.value
             }
             
             DB.save()
+            sourceViewController.reloadDataForTableView(type: sourceViewController.currentType, cate: sourceViewController.currentCate, fromMonth: sourceViewController.currentBeginningMonth, toMonth: sourceViewController.currentEndingMonth)
             self.navigationController?.popViewController(animated: true)
         }
     }
     
     // MARK: Variable
-    var sourceViewController: UIViewController!
+    var sourceViewController: SummaryViewController!
     var isNew = true
+    var sourceData: FinAct!
     
 }

@@ -52,8 +52,13 @@ class SummaryViewController: UIViewController {
         let now = Date()
         let calendar = Calendar.current
         let currentMonth = "\(calendar.component(.month, from: now))/\(calendar.component(.year, from: now))"
+        currentBeginningMonth = currentMonth
+        currentEndingMonth = currentMonth
         beginningTimeTextField.text = currentMonth
         endingTimeTextField.text = currentMonth
+        
+        // Init data for tableview
+        reloadDataForTableView(type: "All")
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,10 +68,6 @@ class SummaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        activities = FinAct.all()
-        
-        activityTableView.reloadData()
     }
     
     // MARK: Outlet
@@ -82,6 +83,10 @@ class SummaryViewController: UIViewController {
     var endingMonthYearPicker: UIPickerView!
     
     var activities:[NSManagedObject] = []
+    var currentType:String = "All"
+    var currentCate:String = "All"
+    var currentBeginningMonth: String = ""
+    var currentEndingMonth: String = ""
     
     // MARK: Variable
     let typeRef = ["All", "Income", "Expense"]
@@ -100,8 +105,12 @@ class SummaryViewController: UIViewController {
         let cate = cates[typeCatePicker.selectedRow(inComponent: 1)]
         if type == "All" {
             typeCateTextField.text = "All"
+            currentType = "All"
+            currentCate = "All"
         } else {
             typeCateTextField.text = "\(type), \(cate)"
+            currentType = type
+            currentCate = cate
         }
         typeCateTextField.resignFirstResponder()
     }
@@ -110,6 +119,7 @@ class SummaryViewController: UIViewController {
         let month = beginningMonthYearPicker.selectedRow(inComponent: 0) + 1
         let year = beginningMonthYearPicker.selectedRow(inComponent: 1) + 2018
         beginningTimeTextField.text = "\(month)/\(year)"
+        currentBeginningMonth = "\(month)/\(year)"
         beginningTimeTextField.resignFirstResponder()
     }
     
@@ -117,6 +127,7 @@ class SummaryViewController: UIViewController {
         let month = endingMonthYearPicker.selectedRow(inComponent: 0) + 1
         let year = endingMonthYearPicker.selectedRow(inComponent: 1) + 2018
         endingTimeTextField.text = "\(month)/\(year)"
+        currentEndingMonth = "\(month)/\(year)"
         endingTimeTextField.resignFirstResponder()
     }
     
@@ -157,7 +168,25 @@ class SummaryViewController: UIViewController {
         }
     }
     
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let desViewController = segue.destination as! AddActivityViewController
+        desViewController.sourceViewController = self
+        if segue.identifier == "newActivitySegue" {
+            desViewController.isNew = true
+        }
+    }
+    
     // MARK: Helper
+    func reloadDataForTableView(type: String, cate: String = "", fromMonth beginningMonth: String = "", toMonth endingMonth: String = "") {
+        if type == "All" {
+            activities = FinAct.all()
+        } else {
+            activities = FinAct.fetchData(fromMonth: beginningMonth, toMonth: endingMonth, type: type, cate: cate)
+        }
+        
+        activityTableView.reloadData()
+    }
 }
 
 extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -217,12 +246,21 @@ extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell", for: indexPath)
         (cell as! ActivityTableViewCell).loadContent(activity: activities[indexPath.row] as! FinAct)
-        print(cell)
+        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let detailVC = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! AddActivityViewController
+        detailVC.isNew = false
+        detailVC.sourceViewController = self
+        detailVC.sourceData = activities[indexPath.row] as! FinAct
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
 }

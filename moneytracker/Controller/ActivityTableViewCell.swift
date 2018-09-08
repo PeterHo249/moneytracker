@@ -20,8 +20,8 @@ class ActivityTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-
+    }    
+    
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var costLabel: UILabel!

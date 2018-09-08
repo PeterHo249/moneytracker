@@ -263,6 +263,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTK-tz-obk">
                                 <rect key="frame" x="135" y="84" width="100" height="21"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="OFv-PH-9NY"/>
                                 </constraints>
@@ -313,7 +314,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qB7-66-2oK">
-                                                    <rect key="frame" x="199" y="33" width="36" height="21"/>
+                                                    <rect key="frame" x="219" y="33" width="36" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -446,15 +447,12 @@
                             <constraint firstItem="iCN-OW-JsM" firstAttribute="centerY" secondItem="7Gn-0p-tWK" secondAttribute="centerY" id="z9w-OE-OC5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4za-ms-Cnp"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="dDb-Od-4NW" appends="YES" id="jCb-XX-P58"/>
-                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Summary" image="search" id="gCa-oe-UEx"/>
                     <navigationItem key="navigationItem" title="Summary" id="zmd-CC-yP6">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="Hwn-gd-bUM">
                             <connections>
-                                <segue destination="9cR-X2-LEo" kind="show" id="G5h-z8-SvA"/>
+                                <segue destination="9cR-X2-LEo" kind="show" identifier="newActivitySegue" id="G5h-z8-SvA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -468,18 +466,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlb-O1-vHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="dDb-Od-4NW">
-                    <connections>
-                        <action selector="onTapRecognized:" destination="TAN-eI-HEy" id="Hl9-JD-q6B"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1147.5" y="-118.30985915492958"/>
         </scene>
         <!--Activity Detail-->
         <scene sceneID="dvt-NP-SN2">
             <objects>
-                <viewController title="Activity Detail" id="9cR-X2-LEo" customClass="AddActivityViewController" customModule="moneytracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" title="Activity Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9cR-X2-LEo" customClass="AddActivityViewController" customModule="moneytracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oyy-wD-ner">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
