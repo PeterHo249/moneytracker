@@ -17,6 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let isInitInfo = UserDefaults.standard.bool(forKey: "user_info_initialized")
+        let now = Date()
+        let calendar = Calendar.current
+        if isInitInfo == false {
+            UserDefaults.standard.set(0, forKey: balanceKeyName)
+            UserDefaults.standard.set(0, forKey: budgetKeyName)
+            UserDefaults.standard.set(0, forKey: savingKeyName)
+            UserDefaults.standard.set(0, forKey: spentKeyName)
+            UserDefaults.standard.set(calendar.component(.month, from: now), forKey: monthSpendKeyName)
+            UserDefaults.standard.set(true, forKey: "user_info_initialized")
+        } else {
+            if UserDefaults.standard.integer(forKey: monthSpendKeyName) != calendar.component(.month, from: now) {
+                UserDefaults.standard.set(0, forKey: spentKeyName)
+                UserDefaults.standard.set(calendar.component(.month, from: now), forKey: monthSpendKeyName)
+            }
+        }
+        
         return true
     }
 

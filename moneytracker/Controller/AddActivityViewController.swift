@@ -99,41 +99,88 @@ class AddActivityViewController: FormViewController {
     // MARK: Action
     @objc func onSaveButtonPushed() {
         let errors = form.validate()
-        print(errors)
         if errors.count != 0 {
             let alert = UIAlertController(title: "Opps!", message: "Please complete all filed!", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
         } else {
-            if isNew {
-                let newActicity = FinAct.create() as! FinAct
-                let descRow:TextRow = form.rowBy(tag: tags.descTag)!
-                newActicity.desc = descRow.value
-                let costRow:IntRow = form.rowBy(tag: tags.costTag)!
-                newActicity.cost = Int32(costRow.value!)
-                let dateRow:DateRow = form.rowBy(tag: tags.dateTag)!
-                newActicity.date = dateRow.value! as NSDate
-                let typeRow:PushRow<String> = form.rowBy(tag: tags.typeTag)!
-                newActicity.type = typeRow.value
-                let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
-                newActicity.category = cateRow.value
-            } else {
-                let descRow:TextRow = form.rowBy(tag: tags.descTag)!
-                sourceData.desc = descRow.value
-                let costRow:IntRow = form.rowBy(tag: tags.costTag)!
-                sourceData.cost = Int32(costRow.value!)
-                let dateRow:DateRow = form.rowBy(tag: tags.dateTag)!
-                sourceData.date = dateRow.value! as NSDate
-                let typeRow:PushRow<String> = form.rowBy(tag: tags.typeTag)!
-                sourceData.type = typeRow.value
-                let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
-                sourceData.category = cateRow.value
-            }
+            var balance = UserDefaults.standard.integer(forKey: balanceKeyName)
+            var spent = UserDefaults.standard.integer(forKey: spentKeyName)
             
-            DB.save()
-            sourceViewController.reloadDataForTableView(type: sourceViewController.currentType, cate: sourceViewController.currentCate, fromMonth: sourceViewController.currentBeginningMonth, toMonth: sourceViewController.currentEndingMonth)
-            self.navigationController?.popViewController(animated: true)
+            let descRow:TextRow = form.rowBy(tag: tags.descTag)!
+            let costRow:IntRow = form.rowBy(tag: tags.costTag)!
+            let dateRow:DateRow = form.rowBy(tag: tags.dateTag)!
+            let typeRow:PushRow<String> = form.rowBy(tag: tags.typeTag)!
+            let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
+            
+            let calendar = Calendar.current
+            
+            if isNew {
+                let cost = costRow.value!
+                if cost <= balance {
+                    let newActicity = FinAct.create() as! FinAct
+                    newActicity.desc = descRow.value
+                    newActicity.cost = Int32(costRow.value!)
+                    newActicity.date = dateRow.value! as NSDate
+                    newActicity.type = typeRow.value
+                    newActicity.category = cateRow.value
+                    
+                    balance = balance - cost
+                    UserDefaults.standard.set(balance, forKey: balanceKeyName)
+                    if calendar.component(.month, from: dateRow.value!) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
+                        spent = spent + cost
+                        UserDefaults.standard.set(spent, forKey: spentKeyName)
+                    }
+                    
+                    DB.save()
+                    sourceViewController.refreshFinStatement()
+                    sourceViewController.reloadDataForTableView(type: sourceViewController.currentType, cate: sourceViewController.currentCate, fromMonth: sourceViewController.currentBeginningMonth, toMonth: sourceViewController.currentEndingMonth)
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Opps!", message: "You have less money than you need.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    
+                    alert.addAction(okAction)
+                    
+                    present(alert, animated: true, completion: nil)
+                }
+            } else {
+                let cost = costRow.value!
+                let oldCost = Int(sourceData.cost)
+                let oldMonth = calendar.component(.month, from: sourceData.date! as Date)
+                let costDiff = cost - oldCost
+                if costDiff <= balance {
+                    sourceData.desc = descRow.value
+                    sourceData.cost = Int32(costRow.value!)
+                    sourceData.date = dateRow.value! as NSDate
+                    sourceData.type = typeRow.value
+                    sourceData.category = cateRow.value
+                    
+                    balance = balance - costDiff
+                    UserDefaults.standard.set(balance, forKey: balanceKeyName)
+                    if calendar.component(.month, from: dateRow.value!) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
+                        if calendar.component(.month, from: dateRow.value!) != oldMonth {
+                            spent = spent + cost
+                        } else {
+                            spent = spent + costDiff
+                        }
+                        UserDefaults.standard.set(spent, forKey: spentKeyName)
+                    }
+                    
+                    DB.save()
+                    sourceViewController.refreshFinStatement()
+                    sourceViewController.reloadDataForTableView(type: sourceViewController.currentType, cate: sourceViewController.currentCate, fromMonth: sourceViewController.currentBeginningMonth, toMonth: sourceViewController.currentEndingMonth)
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Opps!", message: "You have less money than you need.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                    
+                    alert.addAction(okAction)
+                    
+                    present(alert, animated: true, completion: nil)
+                }
+            }
         }
     }
     

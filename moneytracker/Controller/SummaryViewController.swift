@@ -16,6 +16,17 @@ class SummaryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        if UserDefaults.standard.bool(forKey: "user_balance_initialized") == false {
+            initBalance()
+            UserDefaults.standard.set(true, forKey: "user_balance_initialized")
+        }
+        
+        let balance = UserDefaults.standard.integer(forKey: balanceKeyName)
+        let spent = UserDefaults.standard.integer(forKey: spentKeyName)
+        let budget = UserDefaults.standard.integer(forKey: budgetKeyName)
+        balanceLabel.text = "\(balance)"
+        budgetLabel.text = "\(spent)/\(budget)"
+        
         // Init picker view
         typeCatePicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
         typeCatePicker.delegate = self
@@ -71,6 +82,8 @@ class SummaryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        refreshFinStatement()
     }
     
     // MARK: Outlet
@@ -158,7 +171,6 @@ class SummaryViewController: UIViewController {
     weak var actionToEnable: UIAlertAction!
     
     @IBAction func onChangeButtonPushed(_ sender: UIButton) {
-        
         let alert = UIAlertController(title: "Budget", message: "Enter your budget for a month.", preferredStyle: UIAlertControllerStyle.alert)
         
         alert.addTextField(configurationHandler: {(textField: UITextField) in
@@ -173,7 +185,37 @@ class SummaryViewController: UIViewController {
         let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (_) -> Void in
             let textfield = alert.textFields!.first!
             
-            print(textfield.text ?? "Nothing")
+            let newBudget = Int(textfield.text!)
+            UserDefaults.standard.set(newBudget, forKey: budgetKeyName)
+            let spent = UserDefaults.standard.integer(forKey: spentKeyName)
+            self.budgetLabel.text = "\(spent)/\(newBudget ?? 0)"
+        })
+        
+        alert.addAction(cancel)
+        alert.addAction(action)
+        
+        self.actionToEnable = action
+        action.isEnabled = false
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func initBalance() {
+        let alert = UIAlertController(title: "Balance", message: "Enter your current balance.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "e.g. 700000"
+            textField.keyboardType = .numberPad
+            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
+            UserDefaults.standard.set(0, forKey: balanceKeyName)
+        })
+        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (_) -> Void in
+            let textfield = alert.textFields!.first!
+            
+            UserDefaults.standard.set(Int(textfield.text!), forKey: balanceKeyName)
+            self.balanceLabel.text = textfield.text
         })
         
         alert.addAction(cancel)
@@ -210,6 +252,15 @@ class SummaryViewController: UIViewController {
         }
         
         activityTableView.reloadData()
+    }
+    
+    func refreshFinStatement() {
+        let balance = UserDefaults.standard.integer(forKey: balanceKeyName)
+        let spent = UserDefaults.standard.integer(forKey: spentKeyName)
+        let budget = UserDefaults.standard.integer(forKey: budgetKeyName)
+        
+        balanceLabel.text = "\(balance)"
+        budgetLabel.text = "\(spent)/\(budget)"
     }
 }
 

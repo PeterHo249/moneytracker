@@ -8,6 +8,12 @@
 
 import Foundation
 
+let balanceKeyName = "user_balance"
+let budgetKeyName = "user_budget"
+let savingKeyName = "user_saving"
+let spentKeyName = "user_spent"
+let monthSpendKeyName = "user_month_of_spend"
+
 enum FinActivity:Int {
     case Income = 1
     case Expense = 2

@@ -36,11 +36,11 @@ class ActivityTableViewCell: UITableViewCell {
             case .Food:
                 return UIColor.flatYellow()
             case .Travel:
-                return UIColor.flatYellowColorDark()
+                return UIColor.flatTeal()
             case .Vehicle:
                 return UIColor.flatOrange()
             case .Utility:
-                return UIColor.flatOrangeColorDark()
+                return UIColor.flatSandColorDark()
             case .Miscellaneous:
                 return UIColor.flatRed()
             }
@@ -49,7 +49,7 @@ class ActivityTableViewCell: UITableViewCell {
             case .Salary:
                 return UIColor.flatGreen()
             case .Other:
-                return UIColor.flatGreenColorDark()
+                return UIColor.flatMint()
             }
         }
     }
