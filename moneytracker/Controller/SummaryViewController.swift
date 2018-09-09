@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import DZNEmptyDataSet
+import ChameleonFramework
 
 class SummaryViewController: UIViewController {
 
@@ -73,6 +75,11 @@ class SummaryViewController: UIViewController {
         
         // Init data for tableview
         reloadDataForTableView(type: currentType, cate: currentCate, fromMonth: currentBeginningMonth, toMonth: currentEndingMonth)
+        
+        // Empty state
+        activityTableView.emptyDataSetSource = self
+        activityTableView.emptyDataSetDelegate = self
+        activityTableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -340,11 +347,55 @@ extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let activity = activities[indexPath.row] as! FinAct
+            let type = FinActivity.fromString(string: activity.type!)
+            var balance = UserDefaults.standard.integer(forKey: balanceKeyName)
+            var spent = UserDefaults.standard.integer(forKey: spentKeyName)
+            let calendar = Calendar.current
+            
+            if type == .Income {
+                balance = balance - Int(activity.cost)
+                UserDefaults.standard.set(balance, forKey: balanceKeyName)
+            } else {
+                balance = balance + Int(activity.cost)
+                UserDefaults.standard.set(balance, forKey: balanceKeyName)
+                if calendar.component(.month, from: activity.date! as Date) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
+                    spent = spent - Int(activity.cost)
+                    UserDefaults.standard.set(spent, forKey: spentKeyName)
+                }
+            }
+            
             DB.MOC.delete(activities[indexPath.row])
             activities.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            refreshFinStatement()
             DB.save()
         }
     }
     
+}
+
+extension SummaryViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        print("in empty dataset")
+        return UIImage(named: "finAct")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "You have no activity."
+        let attribs = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.flatGray()] as [NSAttributedStringKey : Any]
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Add new finance activity by pressing Add button."
+        
+        let para = NSMutableParagraphStyle()
+        para.lineBreakMode = .byWordWrapping
+        para.alignment = .center
+        
+        let attribs = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.flatGrayColorDark(), NSAttributedStringKey.paragraphStyle: para]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
 }

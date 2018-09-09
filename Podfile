@@ -9,6 +9,7 @@ target 'moneytracker' do
   pod 'Onboard', '~> 2.3'
   pod 'Charts', '~> 3.1'
   pod 'Eureka', '~> 4.2'
+  pod 'DZNEmptyDataSet'
 
   target 'moneytrackerTests' do
     inherit! :search_paths
