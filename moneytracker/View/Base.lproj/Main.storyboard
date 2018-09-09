@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Saving-->
+        <!--Empty Data Set Delegate-->
         <scene sceneID="th6-wO-jUM">
             <objects>
                 <viewController id="fBc-sS-IrF" customClass="SavingViewController" customModule="moneytracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,13 +68,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aW5-zv-U5e">
-                                                    <rect key="frame" x="254" y="31" width="36" height="21"/>
+                                                    <rect key="frame" x="264" y="31" width="36" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUs-QB-baU">
-                                                    <rect key="frame" x="226" y="52" width="64" height="21"/>
+                                                    <rect key="frame" x="236" y="52" width="64" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -98,6 +98,12 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="fBc-sS-IrF" id="Z8c-NQ-XEM"/>
+                                    <outlet property="delegate" destination="fBc-sS-IrF" id="0Vu-sG-1ej"/>
+                                    <outlet property="emptyDataSetDelegate" destination="fBc-sS-IrF" id="QTn-2O-Taj"/>
+                                    <outlet property="emptyDataSetSource" destination="fBc-sS-IrF" id="5p4-Na-V3S"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,6 +127,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="accountLabel" destination="qf8-jd-b9a" id="Mn7-bT-bAw"/>
+                        <outlet property="savingTableView" destination="JVO-gr-5Im" id="Uf6-xf-SRC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Ze-xO-2Ah" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -241,7 +251,7 @@
             </objects>
             <point key="canvasLocation" x="1148" y="1225"/>
         </scene>
-        <!--Summary-->
+        <!--Empty Data Set Delegate-->
         <scene sceneID="nDK-6G-XPF">
             <objects>
                 <viewController title="Summary" id="TAN-eI-HEy" customClass="SummaryViewController" customModule="moneytracker" customModuleProvider="target" sceneMemberID="viewController">
@@ -357,6 +367,8 @@
                                 <connections>
                                     <outlet property="dataSource" destination="TAN-eI-HEy" id="vYS-hO-wP4"/>
                                     <outlet property="delegate" destination="TAN-eI-HEy" id="k2y-QR-uGu"/>
+                                    <outlet property="emptyDataSetDelegate" destination="TAN-eI-HEy" id="gKS-dF-feE"/>
+                                    <outlet property="emptyDataSetSource" destination="TAN-eI-HEy" id="s5U-ii-Qxx"/>
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Gn-0p-tWK">

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ChameleonFramework
+import DZNEmptyDataSet
 
 class SavingViewController: UIViewController {
 
@@ -14,6 +16,7 @@ class SavingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        savingTableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +24,46 @@ class SavingViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: Outlet
+    @IBOutlet weak var savingTableView: UITableView!
+    @IBOutlet weak var accountLabel: UILabel!
+    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension SavingViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
     }
-    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "test")
+        return cell
+    }
+    
+    
+}
 
+extension SavingViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "saving")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "You have no saving."
+        let attribs = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.flatGray()] as [NSAttributedStringKey : Any]
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Add new saving activity by pressing Add button."
+        
+        let para = NSMutableParagraphStyle()
+        para.lineBreakMode = .byWordWrapping
+        para.alignment = .center
+        
+        let attribs = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.flatGrayColorDark(), NSAttributedStringKey.paragraphStyle: para]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
 }

@@ -77,8 +77,8 @@ class SummaryViewController: UIViewController {
         reloadDataForTableView(type: currentType, cate: currentCate, fromMonth: currentBeginningMonth, toMonth: currentEndingMonth)
         
         // Empty state
-        activityTableView.emptyDataSetSource = self
-        activityTableView.emptyDataSetDelegate = self
+        //activityTableView.emptyDataSetSource = self
+        //activityTableView.emptyDataSetDelegate = self
         activityTableView.tableFooterView = UIView()
     }
 
@@ -375,9 +375,8 @@ extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-extension SummaryViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+extension SummaryViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
-        print("in empty dataset")
         return UIImage(named: "finAct")
     }
     
