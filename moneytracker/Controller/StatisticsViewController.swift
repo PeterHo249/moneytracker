@@ -49,6 +49,7 @@ class StatisticsViewController: UIViewController {
     @IBOutlet weak var oneMonthTextField: UITextField!
     @IBOutlet weak var oneMonthPieChart: PieChartView!
     @IBOutlet weak var overviewBarChart: BarChartView!
+    @IBOutlet weak var savingLineChart: LineChartView!
     
     var oneMonthYearPicker: UIPickerView!
     
