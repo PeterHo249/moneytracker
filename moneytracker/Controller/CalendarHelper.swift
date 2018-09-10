@@ -81,10 +81,10 @@ class CalendarHelper {
         }
     }
     
-    static func getString(fromDate date: Date) -> String {
+    static func getString(fromDate date: Date, format: String = "dd/MM/yyyy") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = .current
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = format
         return dateFormatter.string(from: date)
     }
     

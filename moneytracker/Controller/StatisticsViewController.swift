@@ -8,6 +8,8 @@
 
 import UIKit
 import Charts
+import CoreData
+import ChameleonFramework
 
 class StatisticsViewController: UIViewController {
 
@@ -22,7 +24,8 @@ class StatisticsViewController: UIViewController {
         let oneMonthToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let oneMonthDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onOneMonthDoneButtonPushed))
-        oneMonthToolbar.items = [flexibleSpace, oneMonthDoneButton]
+        let oneMonthCancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onOneMonthCancelButtonPushed))
+        oneMonthToolbar.items = [oneMonthCancelButton, flexibleSpace, oneMonthDoneButton]
         oneMonthTextField.inputAccessoryView = oneMonthToolbar
         oneMonthTextField.inputView = oneMonthYearPicker
         
@@ -31,7 +34,8 @@ class StatisticsViewController: UIViewController {
         beginningMonthYearPicker.dataSource = self
         let beginningToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         let beginningDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onBeginningMonthDoneButtonPushed))
-        beginningToolbar.items = [flexibleSpace, beginningDoneButton]
+        let beginningCancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onBeginningCancelButtonPushed))
+        beginningToolbar.items = [beginningCancelButton, flexibleSpace, beginningDoneButton]
         beginningTimeTextField.inputAccessoryView = beginningToolbar
         beginningTimeTextField.inputView = beginningMonthYearPicker
         
@@ -40,7 +44,8 @@ class StatisticsViewController: UIViewController {
         endingMonthYearPicker.dataSource = self
         let endingToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         let endingDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onEndingMonthDoneButtonPushed))
-        endingToolbar.items = [flexibleSpace, endingDoneButton]
+        let endingCancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onEndingCancelButtonPushed))
+        endingToolbar.items = [endingCancelButton, flexibleSpace, endingDoneButton]
         endingTimeTextField.inputAccessoryView = endingToolbar
         endingTimeTextField.inputView = endingMonthYearPicker
         
@@ -51,6 +56,9 @@ class StatisticsViewController: UIViewController {
         oneMonthTextField.text = currentMonth
         beginningTimeTextField.text = currentMonth
         endingTimeTextField.text = currentMonth
+        currentBeginningMonth = currentMonth
+        currentEndingMonth = currentMonth
+        currentOneMonth = currentMonth
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,6 +77,10 @@ class StatisticsViewController: UIViewController {
     var beginningMonthYearPicker: UIPickerView!
     var endingMonthYearPicker: UIPickerView!
     
+    var currentBeginningMonth = ""
+    var currentEndingMonth = ""
+    var currentOneMonth = ""
+    
     // MARK - Action
     @IBAction func onTapRegconized(_ sender: UITapGestureRecognizer) {
         oneMonthTextField.resignFirstResponder()
@@ -83,20 +95,73 @@ class StatisticsViewController: UIViewController {
         oneMonthTextField.resignFirstResponder()
     }
     
+    @objc func onOneMonthCancelButtonPushed() {
+        oneMonthTextField.resignFirstResponder()
+    }
+    
     @objc func onBeginningMonthDoneButtonPushed() {
         let month = beginningMonthYearPicker.selectedRow(inComponent: 0) + 1
         let year = beginningMonthYearPicker.selectedRow(inComponent: 1) + 2018
         beginningTimeTextField.text = "\(month)/\(year)"
+        currentBeginningMonth = "\(month)/\(year)"
+        if CalendarHelper.compareDateFromString(currentBeginningMonth, currentEndingMonth) == .greater {
+            currentEndingMonth = currentBeginningMonth
+            endingTimeTextField.text = currentEndingMonth
+        }
+        beginningTimeTextField.resignFirstResponder()
+    }
+    
+    @objc func onBeginningCancelButtonPushed() {
         beginningTimeTextField.resignFirstResponder()
     }
     
     @objc func onEndingMonthDoneButtonPushed() {
         let month = endingMonthYearPicker.selectedRow(inComponent: 0) + 1
         let year = endingMonthYearPicker.selectedRow(inComponent: 1) + 2018
-        endingTimeTextField.text = "\(month)/\(year)"
+        if CalendarHelper.compareDateFromString(currentBeginningMonth, "\(month)/\(year)") == .less {
+            endingTimeTextField.text = "\(month)/\(year)"
+            currentEndingMonth = "\(month)/\(year)"
+        }
         endingTimeTextField.resignFirstResponder()
     }
     
+    @objc func onEndingCancelButtonPushed() {
+        endingTimeTextField.resignFirstResponder()
+    }
+    
+    func pieChartUpdate(forMonth month:String) {
+        let activities = FinAct.fetchData(forMonth: month, type: "Expense") as! [FinAct]
+        
+        var entries:[PieChartDataEntry] = []
+        var colors:[UIColor] = []
+        var expenseCost = [0, 0, 0, 0, 0]
+        let colorRef = [UIColor.flatYellow(), UIColor.flatTeal(), UIColor.flatOrange(), UIColor.flatSandColorDark(), UIColor.flatRed()]
+        
+        for activity in activities {
+            let cate = ExpenseCate.fromString(string: activity.category!)
+            expenseCost[cate.rawValue] += Int(activity.cost)
+        }
+        
+        var i = 0
+        for cost in expenseCost {
+            if cost != 0 {
+                let label = ExpenseCate.init(rawValue: i)?.string()
+                let entry = PieChartDataEntry(value: Double(cost), label: label)
+                entries.append(entry)
+                colors.append(colorRef[i]!)
+            }
+            i += 1
+        }
+        
+        let dataset = PieChartDataSet(values: entries, label: "Expense Type")
+        let data = PieChartData(dataSet: dataset)
+        oneMonthPieChart.data = data
+        oneMonthPieChart.chartDescription?.text = "Expense Cost"
+        
+        dataset.colors = colors
+        oneMonthPieChart.legend.enabled = false
+        oneMonthPieChart.animate(xAxisDuration: 1.5, easingOption: .easeInOutQuint)
+    }
 }
 
 extension StatisticsViewController: UIPickerViewDataSource, UIPickerViewDelegate {

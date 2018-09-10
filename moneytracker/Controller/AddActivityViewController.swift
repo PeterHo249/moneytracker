@@ -165,8 +165,9 @@ class AddActivityViewController: FormViewController {
             } else { // Change existing activity
                 let cost = costRow.value!
                 let oldCost = Int(sourceData.cost)
-                let oldMonth = calendar.component(.month, from: sourceData.date! as Date)
+                let oldMonth = CalendarHelper.getString(fromDate: sourceData.date! as Date, format: "MM/yyyy")
                 let oldType = FinActivity.fromString(string: sourceData.type!)
+                let month = CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy")
                 let type = FinActivity.fromString(string: typeRow.value!)
                 let costDiff = cost - oldCost
                 if type == oldType { // Check whether change type of activity
@@ -181,7 +182,7 @@ class AddActivityViewController: FormViewController {
                             balance = balance - costDiff
                             UserDefaults.standard.set(balance, forKey: balanceKeyName)
                             if calendar.component(.month, from: dateRow.value!) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
-                                if calendar.component(.month, from: dateRow.value!) != oldMonth {
+                                if CalendarHelper.compareDateFromString(oldMonth, month) != .equal {
                                     spent = spent + cost
                                 } else {
                                     spent = spent + costDiff
@@ -229,7 +230,7 @@ class AddActivityViewController: FormViewController {
                             balance = balance - cost
                             UserDefaults.standard.set(balance, forKey: balanceKeyName)
                             if calendar.component(.month, from: dateRow.value!) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
-                                if calendar.component(.month, from: dateRow.value!) != oldMonth {
+                                if CalendarHelper.compareDateFromString(oldMonth, month) != .equal {
                                     spent = spent + cost
                                 } else {
                                     spent = spent + costDiff
