@@ -29,36 +29,14 @@ class StatisticsViewController: UIViewController {
         oneMonthTextField.inputAccessoryView = oneMonthToolbar
         oneMonthTextField.inputView = oneMonthYearPicker
         
-        beginningMonthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
-        beginningMonthYearPicker.delegate = self
-        beginningMonthYearPicker.dataSource = self
-        let beginningToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        let beginningDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onBeginningMonthDoneButtonPushed))
-        let beginningCancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onBeginningCancelButtonPushed))
-        beginningToolbar.items = [beginningCancelButton, flexibleSpace, beginningDoneButton]
-        beginningTimeTextField.inputAccessoryView = beginningToolbar
-        beginningTimeTextField.inputView = beginningMonthYearPicker
-        
-        endingMonthYearPicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
-        endingMonthYearPicker.delegate = self
-        endingMonthYearPicker.dataSource = self
-        let endingToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        let endingDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(onEndingMonthDoneButtonPushed))
-        let endingCancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(onEndingCancelButtonPushed))
-        endingToolbar.items = [endingCancelButton, flexibleSpace, endingDoneButton]
-        endingTimeTextField.inputAccessoryView = endingToolbar
-        endingTimeTextField.inputView = endingMonthYearPicker
-        
         // Init value for text field
         let now = Date()
         let calendar = Calendar.current
         let currentMonth = "\(calendar.component(.month, from: now))/\(calendar.component(.year, from: now))"
         oneMonthTextField.text = currentMonth
-        beginningTimeTextField.text = currentMonth
-        endingTimeTextField.text = currentMonth
-        currentBeginningMonth = currentMonth
-        currentEndingMonth = currentMonth
         currentOneMonth = currentMonth
+        
+        pieChartUpdate(forMonth: oneMonthTextField.text!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,64 +47,27 @@ class StatisticsViewController: UIViewController {
     // MARK - Outlet
     @IBOutlet weak var oneMonthTextField: UITextField!
     @IBOutlet weak var oneMonthPieChart: PieChartView!
-    @IBOutlet weak var beginningTimeTextField: UITextField!
-    @IBOutlet weak var endingTimeTextField: UITextField!
     @IBOutlet weak var overviewBarChart: BarChartView!
     
     var oneMonthYearPicker: UIPickerView!
-    var beginningMonthYearPicker: UIPickerView!
-    var endingMonthYearPicker: UIPickerView!
     
-    var currentBeginningMonth = ""
-    var currentEndingMonth = ""
     var currentOneMonth = ""
     
     // MARK - Action
     @IBAction func onTapRegconized(_ sender: UITapGestureRecognizer) {
         oneMonthTextField.resignFirstResponder()
-        beginningTimeTextField.resignFirstResponder()
-        endingTimeTextField.resignFirstResponder()
     }
     
     @objc func onOneMonthDoneButtonPushed() {
         let month = oneMonthYearPicker.selectedRow(inComponent: 0) + 1
         let year = oneMonthYearPicker.selectedRow(inComponent: 1) + 2018
         oneMonthTextField.text = "\(month)/\(year)"
+        pieChartUpdate(forMonth: oneMonthTextField.text!)
         oneMonthTextField.resignFirstResponder()
     }
     
     @objc func onOneMonthCancelButtonPushed() {
         oneMonthTextField.resignFirstResponder()
-    }
-    
-    @objc func onBeginningMonthDoneButtonPushed() {
-        let month = beginningMonthYearPicker.selectedRow(inComponent: 0) + 1
-        let year = beginningMonthYearPicker.selectedRow(inComponent: 1) + 2018
-        beginningTimeTextField.text = "\(month)/\(year)"
-        currentBeginningMonth = "\(month)/\(year)"
-        if CalendarHelper.compareDateFromString(currentBeginningMonth, currentEndingMonth) == .greater {
-            currentEndingMonth = currentBeginningMonth
-            endingTimeTextField.text = currentEndingMonth
-        }
-        beginningTimeTextField.resignFirstResponder()
-    }
-    
-    @objc func onBeginningCancelButtonPushed() {
-        beginningTimeTextField.resignFirstResponder()
-    }
-    
-    @objc func onEndingMonthDoneButtonPushed() {
-        let month = endingMonthYearPicker.selectedRow(inComponent: 0) + 1
-        let year = endingMonthYearPicker.selectedRow(inComponent: 1) + 2018
-        if CalendarHelper.compareDateFromString(currentBeginningMonth, "\(month)/\(year)") == .less {
-            endingTimeTextField.text = "\(month)/\(year)"
-            currentEndingMonth = "\(month)/\(year)"
-        }
-        endingTimeTextField.resignFirstResponder()
-    }
-    
-    @objc func onEndingCancelButtonPushed() {
-        endingTimeTextField.resignFirstResponder()
     }
     
     func pieChartUpdate(forMonth month:String) {
@@ -159,8 +100,61 @@ class StatisticsViewController: UIViewController {
         oneMonthPieChart.chartDescription?.text = "Expense Cost"
         
         dataset.colors = colors
+        oneMonthPieChart.usePercentValuesEnabled = true
         oneMonthPieChart.legend.enabled = false
         oneMonthPieChart.animate(xAxisDuration: 1.5, easingOption: .easeInOutQuint)
+        dataset.valueColors = [UIColor.flatBlack()]
+        
+        oneMonthPieChart.notifyDataSetChanged()
+    }
+    
+    func barChartUpdate(from beginning:String, to ending:String) {
+        let activities = FinAct.fetchData(fromMonth: beginning, toMonth: ending) as! [FinAct]
+        let calendar = Calendar.current
+        
+        let beginningMonth = CalendarHelper.getCalendarComponents(fromString: beginning)[0]
+        var monthLabel:[String] = []
+        
+        for i in 0...4 {
+            if beginningMonth + i > 12 {
+                monthLabel.append("\(beginningMonth + i - 12)")
+            } else {
+                monthLabel.append("\(beginningMonth + i)")
+            }
+        }
+        
+        var incomeData:[Int] = [0, 0, 0, 0, 0]
+        var expenseData:[Int] = [0, 0, 0, 0, 0]
+        
+        for activity in activities {
+            var index = calendar.component(.month, from: activity.date! as Date) - beginningMonth
+            if index < 0 {
+                index += 12
+            }
+            if FinActivity.fromString(string: activity.type!) == .Income {
+                incomeData[index] += Int(activity.cost)
+            } else {
+                expenseData[index] += Int(activity.cost)
+            }
+        }
+        
+        var incomeEntry:[BarChartDataEntry] = []
+        var expenseEntry:[BarChartDataEntry] = []
+        for i in 0...4 {
+            incomeEntry.append(BarChartDataEntry(x: Double(i), y: Double(incomeData[i])))
+            expenseEntry.append(BarChartDataEntry(x: Double(i), y: Double(expenseData[i])))
+        }
+        
+        let incomeDataSet = BarChartDataSet(values: incomeEntry, label: "Income")
+        let expenseDataSet = BarChartDataSet(values: expenseEntry, label: "Expense")
+        incomeDataSet.colors = [UIColor.flatGreen()]
+        expenseDataSet.colors = [UIColor.flatYellow()]
+        
+        let chartData = BarChartData(dataSets: [incomeDataSet, expenseDataSet])
+        
+        
+        overviewBarChart.data = chartData
+        overviewBarChart.notifyDataSetChanged()
     }
 }
 

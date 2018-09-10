@@ -175,58 +175,39 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3k-vT-j7D" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="5" y="121" width="310" height="100"/>
+                                <rect key="frame" x="0.0" y="121" width="320" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="oQf-Gf-ibI"/>
+                                    <constraint firstAttribute="height" constant="170" id="oQf-Gf-ibI"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="StQ-aD-LeM">
-                                <rect key="frame" x="174" y="236.5" width="136" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sM-ae-U0w">
-                                <rect key="frame" x="156" y="241" width="8" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Activities in 5 months" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sM-ae-U0w">
+                                <rect key="frame" x="58.5" y="301" width="203" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-J8-emC" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="10" y="276.5" width="300" height="232.5"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-J8-emC" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="336.5" width="320" height="182.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l6R-w8-ydC">
-                                <rect key="frame" x="10" y="236.5" width="136" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="UYO-zb-1Nd" firstAttribute="top" secondItem="yfZ-63-BpY" secondAttribute="bottom" constant="10" id="4QD-H3-0UY"/>
                             <constraint firstItem="Z3k-vT-j7D" firstAttribute="centerX" secondItem="6AA-s7-4oE" secondAttribute="centerX" id="609-xv-6EK"/>
-                            <constraint firstItem="3sM-ae-U0w" firstAttribute="leading" secondItem="l6R-w8-ydC" secondAttribute="trailing" constant="10" id="Jnv-GM-nYM"/>
-                            <constraint firstItem="l6R-w8-ydC" firstAttribute="leading" secondItem="6AA-s7-4oE" secondAttribute="leading" constant="10" id="Kyx-oZ-Zin"/>
                             <constraint firstItem="UYO-zb-1Nd" firstAttribute="centerX" secondItem="6AA-s7-4oE" secondAttribute="centerX" id="Lgn-Z7-yQ9"/>
-                            <constraint firstItem="gb1-J8-emC" firstAttribute="top" secondItem="l6R-w8-ydC" secondAttribute="bottom" constant="10" id="Lqp-1M-zAR"/>
-                            <constraint firstItem="6AA-s7-4oE" firstAttribute="trailing" secondItem="gb1-J8-emC" secondAttribute="trailing" constant="10" id="P6x-Lt-SsI"/>
+                            <constraint firstItem="6AA-s7-4oE" firstAttribute="trailing" secondItem="gb1-J8-emC" secondAttribute="trailing" id="P6x-Lt-SsI"/>
                             <constraint firstItem="yfZ-63-BpY" firstAttribute="top" secondItem="6AA-s7-4oE" secondAttribute="top" constant="30" id="S11-Hl-HuI"/>
-                            <constraint firstItem="6AA-s7-4oE" firstAttribute="trailing" secondItem="StQ-aD-LeM" secondAttribute="trailing" constant="10" id="Wmi-GW-eqG"/>
-                            <constraint firstItem="StQ-aD-LeM" firstAttribute="leading" secondItem="3sM-ae-U0w" secondAttribute="trailing" constant="10" id="bd6-9R-QbM"/>
-                            <constraint firstItem="gb1-J8-emC" firstAttribute="leading" secondItem="6AA-s7-4oE" secondAttribute="leading" constant="10" id="eAz-2U-apf"/>
-                            <constraint firstItem="3sM-ae-U0w" firstAttribute="top" secondItem="Z3k-vT-j7D" secondAttribute="bottom" constant="20" id="ea1-ds-F9q"/>
-                            <constraint firstItem="Z3k-vT-j7D" firstAttribute="leading" secondItem="6AA-s7-4oE" secondAttribute="leading" constant="5" id="g4w-mo-aqG"/>
+                            <constraint firstItem="gb1-J8-emC" firstAttribute="leading" secondItem="6AA-s7-4oE" secondAttribute="leading" id="eAz-2U-apf"/>
+                            <constraint firstItem="3sM-ae-U0w" firstAttribute="top" secondItem="Z3k-vT-j7D" secondAttribute="bottom" constant="10" id="ea1-ds-F9q"/>
+                            <constraint firstItem="Z3k-vT-j7D" firstAttribute="leading" secondItem="6AA-s7-4oE" secondAttribute="leading" id="g4w-mo-aqG"/>
                             <constraint firstItem="yfZ-63-BpY" firstAttribute="centerX" secondItem="6AA-s7-4oE" secondAttribute="centerX" id="gMP-vx-OhJ"/>
                             <constraint firstItem="Z3k-vT-j7D" firstAttribute="top" secondItem="UYO-zb-1Nd" secondAttribute="bottom" constant="10" id="h6x-oL-BTo"/>
-                            <constraint firstItem="6AA-s7-4oE" firstAttribute="trailing" secondItem="Z3k-vT-j7D" secondAttribute="trailing" constant="5" id="k8y-Ye-Wzu"/>
+                            <constraint firstItem="6AA-s7-4oE" firstAttribute="trailing" secondItem="Z3k-vT-j7D" secondAttribute="trailing" id="k8y-Ye-Wzu"/>
                             <constraint firstItem="3sM-ae-U0w" firstAttribute="centerX" secondItem="6AA-s7-4oE" secondAttribute="centerX" id="kEe-JX-XC4"/>
-                            <constraint firstItem="6AA-s7-4oE" firstAttribute="bottom" secondItem="gb1-J8-emC" secondAttribute="bottom" constant="10" id="lQ3-Nz-OmF"/>
-                            <constraint firstItem="StQ-aD-LeM" firstAttribute="centerY" secondItem="3sM-ae-U0w" secondAttribute="centerY" id="o1J-e4-gA7"/>
-                            <constraint firstItem="l6R-w8-ydC" firstAttribute="centerY" secondItem="3sM-ae-U0w" secondAttribute="centerY" id="uUA-Wp-ndU"/>
+                            <constraint firstItem="6AA-s7-4oE" firstAttribute="bottom" secondItem="gb1-J8-emC" secondAttribute="bottom" id="lQ3-Nz-OmF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6AA-s7-4oE"/>
                         <connections>
@@ -235,8 +216,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Statistics" image="analytics" id="Eos-oG-mqC"/>
                     <connections>
-                        <outlet property="beginningTimeTextField" destination="l6R-w8-ydC" id="kqU-5x-EZX"/>
-                        <outlet property="endingTimeTextField" destination="StQ-aD-LeM" id="tR6-QM-XQb"/>
                         <outlet property="oneMonthPieChart" destination="Z3k-vT-j7D" id="NFd-YC-EGh"/>
                         <outlet property="oneMonthTextField" destination="UYO-zb-1Nd" id="4kC-ph-kel"/>
                         <outlet property="overviewBarChart" destination="gb1-J8-emC" id="Z1U-mL-oCB"/>
