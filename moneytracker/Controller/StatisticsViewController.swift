@@ -37,6 +37,7 @@ class StatisticsViewController: UIViewController {
         currentOneMonth = currentMonth
         
         pieChartUpdate(forMonth: oneMonthTextField.text!)
+        barChartUpdate(month: currentMonth)
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,7 +98,6 @@ class StatisticsViewController: UIViewController {
         let dataset = PieChartDataSet(values: entries, label: "Expense Type")
         let data = PieChartData(dataSet: dataset)
         oneMonthPieChart.data = data
-        oneMonthPieChart.chartDescription?.text = "Expense Cost"
         
         dataset.colors = colors
         oneMonthPieChart.usePercentValuesEnabled = true
@@ -105,10 +105,20 @@ class StatisticsViewController: UIViewController {
         oneMonthPieChart.animate(xAxisDuration: 1.5, easingOption: .easeInOutQuint)
         dataset.valueColors = [UIColor.flatBlack()]
         
+        oneMonthPieChart.chartDescription?.text = ""
+        
         oneMonthPieChart.notifyDataSetChanged()
     }
     
-    func barChartUpdate(from beginning:String, to ending:String) {
+    func barChartUpdate(month: String) {
+        let components = CalendarHelper.getCalendarComponents(fromString: month)
+        let ending = month
+        var beginning = ""
+        if components[0] <= 4 {
+            beginning = "\(components[0] + 8)/\(components[1] - 1)"
+        } else {
+            beginning = "\(components[0] - 4)/\(components[1])"
+        }
         let activities = FinAct.fetchData(fromMonth: beginning, toMonth: ending) as! [FinAct]
         let calendar = Calendar.current
         
@@ -152,6 +162,50 @@ class StatisticsViewController: UIViewController {
         
         let chartData = BarChartData(dataSets: [incomeDataSet, expenseDataSet])
         
+        let legend = overviewBarChart.legend
+        legend.enabled = true
+        legend.horizontalAlignment = .right
+        legend.verticalAlignment = .top
+        legend.orientation = .vertical
+        legend.drawInside = true
+        legend.yOffset = 10.0;
+        legend.xOffset = 10.0;
+        legend.yEntrySpace = 0.0;
+        
+        let xaxis = overviewBarChart.xAxis
+        xaxis.drawGridLinesEnabled = true
+        xaxis.labelPosition = .bottom
+        xaxis.centerAxisLabelsEnabled = true
+        xaxis.valueFormatter = IndexAxisValueFormatter(values:monthLabel)
+        xaxis.granularity = 1
+        
+        let leftAxisFormatter = NumberFormatter()
+        leftAxisFormatter.maximumFractionDigits = 1
+        
+        let yaxis = overviewBarChart.leftAxis
+        yaxis.spaceTop = 0.5
+        yaxis.axisMinimum = 0
+        yaxis.drawGridLinesEnabled = false
+        
+        overviewBarChart.rightAxis.enabled = false
+        
+        let groupSpace = 0.3
+        let barSpace = 0.05
+        let barWidth = 0.3
+        
+        let groupCount = monthLabel.count
+        let startNumber = 0
+        
+        chartData.barWidth = barWidth;
+        overviewBarChart.xAxis.axisMinimum = Double(startNumber)
+        let gg = chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace)
+        overviewBarChart.xAxis.axisMaximum = Double(startNumber) + gg * Double(groupCount)
+        
+        chartData.groupBars(fromX: Double(startNumber), groupSpace: groupSpace, barSpace: barSpace)
+        
+        overviewBarChart.animate(yAxisDuration: 1.5, easingOption: .easeInOutExpo)
+        
+        overviewBarChart.chartDescription?.text = ""
         
         overviewBarChart.data = chartData
         overviewBarChart.notifyDataSetChanged()
