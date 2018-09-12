@@ -351,7 +351,6 @@ extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
             let type = FinActivity.fromString(string: activity.type!)
             var balance = UserDefaults.standard.integer(forKey: balanceKeyName)
             var spent = UserDefaults.standard.integer(forKey: spentKeyName)
-            let calendar = Calendar.current
             
             if type == .Income {
                 balance = balance - Int(activity.cost)
@@ -359,7 +358,7 @@ extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
             } else {
                 balance = balance + Int(activity.cost)
                 UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                if calendar.component(.month, from: activity.date! as Date) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
+                if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) != .equal {
                     spent = spent - Int(activity.cost)
                     UserDefaults.standard.set(spent, forKey: spentKeyName)
                 }

@@ -114,8 +114,6 @@ class AddActivityViewController: FormViewController {
             let typeRow:PushRow<String> = form.rowBy(tag: tags.typeTag)!
             let cateRow:PushRow<String> = form.rowBy(tag: tags.cateTag)!
             
-            let calendar = Calendar.current
-            
             if isNew { // Check whether add new activity or view detail
                 let cost = costRow.value!
                 if FinActivity.fromString(string: typeRow.value!) == .Expense { // If add new expense
@@ -129,7 +127,7 @@ class AddActivityViewController: FormViewController {
                         
                         balance = balance - cost
                         UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                        if calendar.component(.month, from: dateRow.value!) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
+                        if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) == .equal {
                             spent = spent + cost
                             UserDefaults.standard.set(spent, forKey: spentKeyName)
                         }
@@ -181,7 +179,7 @@ class AddActivityViewController: FormViewController {
                             
                             balance = balance - costDiff
                             UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                            if calendar.component(.month, from: dateRow.value!) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
+                            if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) == .equal {
                                 if CalendarHelper.compareDateFromString(oldMonth, month) != .equal {
                                     spent = spent + cost
                                 } else {
@@ -229,7 +227,7 @@ class AddActivityViewController: FormViewController {
                             
                             balance = balance - cost
                             UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                            if calendar.component(.month, from: dateRow.value!) == UserDefaults.standard.integer(forKey: monthSpendKeyName) {
+                            if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) == .equal {
                                 if CalendarHelper.compareDateFromString(oldMonth, month) != .equal {
                                     spent = spent + cost
                                 } else {

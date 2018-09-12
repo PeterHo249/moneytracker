@@ -19,7 +19,7 @@ public class FinAct: NSManagedObject {
     
     static func all() -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         do {
             let list = try DB.MOC.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [NSManagedObject]
@@ -33,7 +33,7 @@ public class FinAct: NSManagedObject {
     
     static func fetchData(forMonth month: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -53,7 +53,7 @@ public class FinAct: NSManagedObject {
     
     static func fetchData(forMonth month: String, type: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -73,7 +73,7 @@ public class FinAct: NSManagedObject {
     
     static func fetchData(forMonth month: String, type: String, cate: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -93,7 +93,7 @@ public class FinAct: NSManagedObject {
     
     static func fetchData(fromMonth beginningMonth: String, toMonth endingMonth: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -114,7 +114,7 @@ public class FinAct: NSManagedObject {
     
     static func fetchData(fromMonth beginningMonth: String, toMonth endingMonth: String, type: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -135,7 +135,7 @@ public class FinAct: NSManagedObject {
     
     static func fetchData(fromMonth beginningMonth: String, toMonth endingMonth: String, type: String, cate: String) -> [NSManagedObject] {
         let fetchRequest: NSFetchRequest<NSManagedObject> = NSFetchRequest(entityName: entityName)
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
 
         fetchRequest.sortDescriptors = [sortDescriptor]
         
