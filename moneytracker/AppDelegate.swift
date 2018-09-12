@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(0, forKey: savingKeyName)
             UserDefaults.standard.set(0, forKey: spentKeyName)
             UserDefaults.standard.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: monthSpendKeyName)
+            UserDefaults.standard.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: savingMonthKeyName)
+            UserDefaults.standard.set([0, 0, 0, 0, 0], forKey: savingHistoryKeyName)
             UserDefaults.standard.set(true, forKey: "user_info_initialized")
         } else {
             if CalendarHelper.compareDateFromString(UserDefaults.standard.string(forKey: monthSpendKeyName)!, CalendarHelper.getString(fromDate: now, format: "MM/yyyy")) != .equal {

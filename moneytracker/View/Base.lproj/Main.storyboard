@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULM-Sv-bzD">
-                                <rect key="frame" x="108.5" y="84" width="103" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Saving" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULM-Sv-bzD">
+                                <rect key="frame" x="114.5" y="84" width="91" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="161" width="320" height="358"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SavingTableViewCell" rowHeight="80" id="qOO-nD-dEl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SavingTableViewCell" rowHeight="80" id="qOO-nD-dEl" customClass="SavingTableViewCell" customModule="moneytracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qOO-nD-dEl" id="T6u-0w-Ht1">
@@ -96,6 +96,14 @@
                                                 <constraint firstItem="V8h-YS-JnL" firstAttribute="leading" secondItem="Ehy-6U-dOH" secondAttribute="trailing" constant="15" id="rCY-5d-ZfK"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="costLabel" destination="V8h-YS-JnL" id="oSi-8N-chY"/>
+                                            <outlet property="dateLabel" destination="aW5-zv-U5e" id="INc-q0-Yqt"/>
+                                            <outlet property="descLabel" destination="RbZ-j5-WDU" id="8vE-YJ-vTn"/>
+                                            <outlet property="indicator" destination="Ehy-6U-dOH" id="jmc-tm-1TJ"/>
+                                            <outlet property="ratePeriodLabel" destination="XUs-QB-baU" id="Dog-Zp-yRv"/>
+                                            <outlet property="typeLabel" destination="NxH-7Q-OCP" id="Q1g-7a-5Cn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

@@ -15,6 +15,10 @@ struct FormTag {
     let dateTag = "Date"
     let typeTag = "Type"
     let cateTag = "Category"
+    let isInterestedTag = "Interesting"
+    let intRateTag = "Rate"
+    let periodTag = "Period"
+    let savingTag = "Saving"
 }
 
 class AddActivityViewController: FormViewController {

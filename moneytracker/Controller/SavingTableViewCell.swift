@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class SavingTableViewCell: UITableViewCell {
 
@@ -20,5 +21,28 @@ class SavingTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    // MARK: Outlet
+    @IBOutlet weak var indicator: UIView!
+    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var costLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var ratePeriodLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    func loadContent(activity: SavingAct) {
+        descLabel.text = activity.desc
+        costLabel.text = "\(activity.cost)"
+        typeLabel.text = activity.type
+        dateLabel.text = CalendarHelper.getString(fromDate: activity.date! as Date, format: "dd/MM/yyyy")
+        switch SavingActivity.fromString(string: activity.type!) {
+        case .Deposit:
+            indicator.backgroundColor = UIColor.flatGreen()
+            if activity.isInterested == true {
+                ratePeriodLabel.text = "\(activity.rate)% - \(activity.period ?? "")"
+            }
+        case .Withdraw:
+            indicator.backgroundColor = UIColor.flatRed()
+        }
+    }
 }

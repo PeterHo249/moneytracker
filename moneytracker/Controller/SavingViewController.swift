@@ -9,6 +9,7 @@
 import UIKit
 import ChameleonFramework
 import DZNEmptyDataSet
+import CoreData
 
 class SavingViewController: UIViewController {
 
@@ -16,6 +17,8 @@ class SavingViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        activities = SavingAct.all()
+        refreshSavingLabel()
         savingTableView.tableFooterView = UIView()
     }
 
@@ -28,19 +31,43 @@ class SavingViewController: UIViewController {
     @IBOutlet weak var savingTableView: UITableView!
     @IBOutlet weak var accountLabel: UILabel!
     
+    var activities:[NSManagedObject] = []
+    
+    // MARK: Helper
+    func refreshSavingLabel() {
+        accountLabel.text = "\(UserDefaults.standard.integer(forKey: savingKeyName))"
+    }
+    
+    func reloadDataForTableView() {
+        activities = SavingAct.all()
+        
+        savingTableView.reloadData()
+    }
+    
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let desViewController = segue.destination as! AddSavingViewController
+        desViewController.isNew = true
+        desViewController.sourceViewController = self
+    }
 
 }
 
 extension SavingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return activities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "test")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SavingTableViewCell", for: indexPath)
+        (cell as! SavingTableViewCell).loadContent(activity: activities[indexPath.row] as! SavingAct)
+        cell.selectionStyle = .none
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
 }
 
