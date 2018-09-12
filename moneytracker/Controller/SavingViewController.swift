@@ -75,7 +75,7 @@ extension SavingViewController: UITableViewDelegate, UITableViewDataSource {
             if SavingActivity.fromString(string: (activities[indexPath.row] as! SavingAct).type!) == .Deposit {
                 saving -= Int((activities[indexPath.row] as! SavingAct).cost)
             } else {
-                saving -= Int((activities[indexPath.row] as! SavingAct).cost)
+                saving += Int((activities[indexPath.row] as! SavingAct).cost)
             }
             UserDefaults.standard.set(saving, forKey: savingKeyName)
             
