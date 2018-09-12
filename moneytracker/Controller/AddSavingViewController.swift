@@ -132,7 +132,8 @@ class AddSavingViewController: FormViewController {
                 UserDefaults.standard.set(currentSaving, forKey: savingKeyName)
                 
                 DB.save()
-                
+                (sourceViewController as! SavingViewController).reloadDataForTableView()
+                (sourceViewController as! SavingViewController).refreshSavingLabel()
                 navigationController?.popViewController(animated: true)
             }
         }

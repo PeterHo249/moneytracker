@@ -69,6 +69,24 @@ extension SavingViewController: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        var saving = UserDefaults.standard.integer(forKey: savingKeyName)
+        if editingStyle == .delete {
+            if SavingActivity.fromString(string: (activities[indexPath.row] as! SavingAct).type!) == .Deposit {
+                saving -= Int((activities[indexPath.row] as! SavingAct).cost)
+            } else {
+                saving -= Int((activities[indexPath.row] as! SavingAct).cost)
+            }
+            UserDefaults.standard.set(saving, forKey: savingKeyName)
+            
+            DB.MOC.delete(activities[indexPath.row])
+            activities.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            refreshSavingLabel()
+            DB.save()
+        }
+    }
+    
 }
 
 extension SavingViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
