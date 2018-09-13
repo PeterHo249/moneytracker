@@ -38,6 +38,16 @@ class StatisticsViewController: UIViewController {
         
         pieChartUpdate(forMonth: oneMonthTextField.text!)
         barChartUpdate(month: currentMonth)
+        lineChartUpdate(month: currentMonth)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let now = Date()
+        let calendar = Calendar.current
+        let currentMonth = "\(calendar.component(.month, from: now))/\(calendar.component(.year, from: now))"
+        pieChartUpdate(forMonth: oneMonthTextField.text!)
+        barChartUpdate(month: currentMonth)
+        lineChartUpdate(month: currentMonth)
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,6 +119,69 @@ class StatisticsViewController: UIViewController {
         oneMonthPieChart.chartDescription?.text = ""
         
         oneMonthPieChart.notifyDataSetChanged()
+    }
+    
+    func lineChartUpdate(month: String) {
+        let activities = SavingAct.allAndCalcInterest() as! [SavingAct]
+        
+        let components = CalendarHelper.getCalendarComponents(fromString: month)
+        var beginning = ""
+        if components[0] <= 4 {
+            beginning = "\(components[0] + 8)/\(components[1] - 1)"
+        } else {
+            beginning = "\(components[0] - 4)/\(components[1])"
+        }
+        
+        let beginningMonth = CalendarHelper.getCalendarComponents(fromString: beginning)[0]
+        let beginningYear = CalendarHelper.getCalendarComponents(fromString: beginning)[1]
+        var monthLabel:[String] = []
+        
+        for i in 0...4 {
+            if beginningMonth + i > 12 {
+                monthLabel.append("\(beginningMonth + i - 12)/\(beginningYear + 1)")
+            } else {
+                monthLabel.append("\(beginningMonth + i)/\(beginningYear)")
+            }
+        }
+        
+        var saving = 0
+        var index = 0
+        var savings = [0, 0, 0, 0, 0]
+        
+        for activity in activities.reversed() {
+            if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), monthLabel[index]) == .less || CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), monthLabel[index]) == .equal {
+                if activity.type == "Deposit" {
+                    saving += Int(activity.cost)
+                } else {
+                    saving -= Int(activity.cost)
+                }
+            } else if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), monthLabel[index]) == .greater {
+                while CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), monthLabel[index]) == .greater {
+                    savings[index] = saving
+                    index += 1
+                }
+                if activity.type == "Deposit" {
+                    saving += Int(activity.cost)
+                } else {
+                    saving -= Int(activity.cost)
+                }
+            }
+        }
+        savings[4] = saving
+        
+        var lineChartEntry:[ChartDataEntry] = []
+        for i in 1...4 {
+            lineChartEntry.append(ChartDataEntry(x: Double(i), y: Double(savings[i])))
+        }
+        
+        let lineChartDataSet = LineChartDataSet(values: lineChartEntry, label: "Saving")
+        lineChartDataSet.colors = [UIColor.flatRed()]
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        savingLineChart.data = lineChartData
+        savingLineChart.chartDescription?.text = ""
+        savingLineChart.xAxis.valueFormatter = IndexAxisValueFormatter(values: monthLabel)
+        savingLineChart.xAxis.labelPosition = .bottom
+        savingLineChart.legend.enabled = false
     }
     
     func barChartUpdate(month: String) {

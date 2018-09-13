@@ -48,7 +48,6 @@
                                     <constraint firstAttribute="height" constant="5" id="BTB-7S-4ua"/>
                                     <constraint firstAttribute="width" constant="280" id="TJS-8c-UHj"/>
                                 </constraints>
-                                <color key="progressTintColor" red="1" green="0.26432063490000002" blue="0.12925855410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </progressView>
                         </subviews>

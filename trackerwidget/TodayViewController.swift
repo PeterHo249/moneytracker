@@ -56,17 +56,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         if budget == 0 {
             spentProgress.progress = 1
-            spentProgress.tintColor = UIColor.red
+            spentProgress.progressTintColor = UIColor.red
         } else {
             let progress:Float = Float(spent) / Float(budget)
             spentProgress.progress = progress
             if progress <= 0.6 {
-                spentProgress.tintColor = UIColor.green
+                spentProgress.progressTintColor = UIColor.green
             } else {
                 if progress <= 0.8 {
-                    spentProgress.tintColor = UIColor.yellow
+                    spentProgress.progressTintColor = UIColor.yellow
                 } else {
-                    spentProgress.tintColor = UIColor.red
+                    spentProgress.progressTintColor = UIColor.red
                 }
             }
         }
