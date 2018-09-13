@@ -8,6 +8,14 @@
 
 import Foundation
 
+let balanceKeyName = "user_balance"
+let budgetKeyName = "user_budget"
+let savingKeyName = "user_saving"
+let spentKeyName = "user_spent"
+let monthSpendKeyName = "user_month_of_spend"
+let savingHistoryKeyName = "user_saving_history"
+let savingMonthKeyName = "user_saving_month"
+
 enum FinActivity:Int {
     case Income = 1
     case Expense = 2
@@ -26,6 +34,51 @@ enum FinActivity:Int {
         }
         
         return FinActivity.Income
+    }
+}
+
+enum SavingActivity:Int {
+    case Deposit = 0
+    case Withdraw
+    
+    static let all = [Deposit, Withdraw]
+    static let strings = ["Deposit", "Withdraw"]
+    
+    func string() -> String {
+        let index = SavingActivity.all.index(of: self) ?? 0
+        return SavingActivity.strings[index]
+    }
+    
+    static func fromString(string: String) -> SavingActivity {
+        if let index = SavingActivity.strings.index(of: string) {
+            return SavingActivity.all[index]
+        }
+        
+        return SavingActivity.Deposit
+    }
+}
+
+enum PeriodRef:Double {
+    case Month1 = 2592000
+    case Month3 = 7682400
+    case Month6 = 15724800
+    case Month12 = 31536000
+    case Month24 = 62208000
+    
+    static let all = [Month1, Month3, Month6, Month12, Month24]
+    static let strings = ["1 month", "3 months", "6 months", "12 months", "24 months"]
+    
+    func string() -> String {
+        let index = PeriodRef.all.index(of: self) ?? 0
+        return PeriodRef.strings[index]
+    }
+    
+    static func fromString(string: String) -> PeriodRef {
+        if let index = PeriodRef.strings.index(of: string) {
+            return PeriodRef.all[index]
+        }
+        
+        return PeriodRef.Month1
     }
 }
 
@@ -72,4 +125,11 @@ enum ExpenseCate:Int {
         
         return ExpenseCate.Food
     }
+}
+
+enum MyComparisionResult {
+    case less
+    case equal
+    case greater
+    case notCompare
 }

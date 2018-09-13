@@ -17,6 +17,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let userDefaults = UserDefaults(suiteName: "group.peterho.moneytracker")!
+        let isInitInfo = userDefaults.bool(forKey: "user_info_initialized")
+        let now = Date()
+        let calendar = Calendar.current
+        if isInitInfo == false {
+            userDefaults.set(0, forKey: balanceKeyName)
+            userDefaults.set(0, forKey: budgetKeyName)
+            userDefaults.set(0, forKey: savingKeyName)
+            userDefaults.set(0, forKey: spentKeyName)
+            userDefaults.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: monthSpendKeyName)
+            userDefaults.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: savingMonthKeyName)
+            userDefaults.set([0, 0, 0, 0, 0], forKey: savingHistoryKeyName)
+            userDefaults.set(true, forKey: "user_info_initialized")
+        } else {
+            if CalendarHelper.compareDateFromString(userDefaults.string(forKey: monthSpendKeyName)!, CalendarHelper.getString(fromDate: now, format: "MM/yyyy")) != .equal {
+                userDefaults.set(0, forKey: spentKeyName)
+                userDefaults.set(calendar.component(.month, from: now), forKey: monthSpendKeyName)
+            }
+        }
+        
         return true
     }
 
@@ -41,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        DB.Save()
+        DB.save()
     }
 
     

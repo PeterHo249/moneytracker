@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import DZNEmptyDataSet
+import ChameleonFramework
 
 class SummaryViewController: UIViewController {
 
@@ -16,6 +18,17 @@ class SummaryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        if userDefaults.bool(forKey: "user_balance_initialized") == false {
+            initBalance()
+            userDefaults.set(true, forKey: "user_balance_initialized")
+        }
+        
+        let balance = userDefaults.integer(forKey: balanceKeyName)
+        let spent = userDefaults.integer(forKey: spentKeyName)
+        let budget = userDefaults.integer(forKey: budgetKeyName)
+        balanceLabel.text = "\(balance)"
+        budgetLabel.text = "\(spent)/\(budget)"
+        
         // Init picker view
         typeCatePicker = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 215))
         typeCatePicker.delegate = self
@@ -23,7 +36,8 @@ class SummaryViewController: UIViewController {
         let typeCateToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let typeCateDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onTypeCateDoneButtonPushed))
-        typeCateToolbar.items = [flexibleSpace, typeCateDoneButton]
+        let typeCateCancleButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.onTypeCateCancelButtonPushed))
+        typeCateToolbar.items = [typeCateCancleButton, flexibleSpace, typeCateDoneButton]
         typeCateTextField.inputAccessoryView = typeCateToolbar
         typeCateTextField.inputView = typeCatePicker
         
@@ -32,7 +46,8 @@ class SummaryViewController: UIViewController {
         beginningMonthYearPicker.dataSource = self
         let beginningToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         let beginningDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onBeginningMonthDoneButtonPushed))
-        beginningToolbar.items = [flexibleSpace, beginningDoneButton]
+        let beginningCancleButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.onBeginningCancelButtonPushed))
+        beginningToolbar.items = [beginningCancleButton, flexibleSpace, beginningDoneButton]
         beginningTimeTextField.inputAccessoryView = beginningToolbar
         beginningTimeTextField.inputView = beginningMonthYearPicker
         
@@ -41,24 +56,41 @@ class SummaryViewController: UIViewController {
         endingMonthYearPicker.dataSource = self
         let endingToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         let endingDoneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.onEndingMonthDoneButtonPushed))
-        endingToolbar.items = [flexibleSpace, endingDoneButton]
+        let endingCancleButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.onEndingCancelButtonPushed))
+        endingToolbar.items = [endingCancleButton, flexibleSpace, endingDoneButton]
         endingTimeTextField.inputAccessoryView = endingToolbar
         endingTimeTextField.inputView = endingMonthYearPicker
         
         cates = cateRef[0]
         
         // Init value for text field
-        typeCateTextField.text = "All, All"
+        typeCateTextField.text = "All"
         let now = Date()
         let calendar = Calendar.current
         let currentMonth = "\(calendar.component(.month, from: now))/\(calendar.component(.year, from: now))"
+        currentBeginningMonth = currentMonth
+        currentEndingMonth = currentMonth
         beginningTimeTextField.text = currentMonth
         endingTimeTextField.text = currentMonth
+        
+        // Init data for tableview
+        reloadDataForTableView(type: currentType, cate: currentCate, fromMonth: currentBeginningMonth, toMonth: currentEndingMonth)
+        
+        // Empty state
+        //activityTableView.emptyDataSetSource = self
+        //activityTableView.emptyDataSetDelegate = self
+        activityTableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        refreshFinStatement()
     }
     
     // MARK: Outlet
@@ -73,10 +105,17 @@ class SummaryViewController: UIViewController {
     var beginningMonthYearPicker: UIPickerView!
     var endingMonthYearPicker: UIPickerView!
     
+    var activities:[NSManagedObject] = []
+    var currentType:String = "All"
+    var currentCate:String = "All"
+    var currentBeginningMonth: String = ""
+    var currentEndingMonth: String = ""
+    
     // MARK: Variable
     let typeRef = ["All", "Income", "Expense"]
     let cateRef = [["All"],["Salary", "Other"],["Food", "Travel", "Vehicle", "Utility", "Miscellaneous"]]
     var cates: [String]!
+    let userDefaults = UserDefaults(suiteName: "group.peterho.moneytracker")!
     
     // MARK: Action
     @IBAction func onTapRecognized(_ sender: UITapGestureRecognizer) {
@@ -88,7 +127,20 @@ class SummaryViewController: UIViewController {
     @objc func onTypeCateDoneButtonPushed() {
         let type = typeRef[typeCatePicker.selectedRow(inComponent: 0)]
         let cate = cates[typeCatePicker.selectedRow(inComponent: 1)]
-        typeCateTextField.text = "\(type), \(cate)"
+        if type == "All" {
+            typeCateTextField.text = "All"
+            currentType = "All"
+            currentCate = "All"
+        } else {
+            typeCateTextField.text = "\(type), \(cate)"
+            currentType = type
+            currentCate = cate
+        }
+        reloadDataForTableView(type: currentType, cate: currentCate, fromMonth: currentBeginningMonth, toMonth: currentEndingMonth)
+        typeCateTextField.resignFirstResponder()
+    }
+    
+    @objc func onTypeCateCancelButtonPushed() {
         typeCateTextField.resignFirstResponder()
     }
     
@@ -96,22 +148,38 @@ class SummaryViewController: UIViewController {
         let month = beginningMonthYearPicker.selectedRow(inComponent: 0) + 1
         let year = beginningMonthYearPicker.selectedRow(inComponent: 1) + 2018
         beginningTimeTextField.text = "\(month)/\(year)"
+        currentBeginningMonth = "\(month)/\(year)"
+        if CalendarHelper.compareDateFromString(currentBeginningMonth, currentEndingMonth) == .greater {
+            currentEndingMonth = currentBeginningMonth
+            endingTimeTextField.text = currentEndingMonth
+        }
+        reloadDataForTableView(type: currentType, cate: currentCate, fromMonth: currentBeginningMonth, toMonth: currentEndingMonth)
+        beginningTimeTextField.resignFirstResponder()
+    }
+    
+    @objc func onBeginningCancelButtonPushed() {
         beginningTimeTextField.resignFirstResponder()
     }
     
     @objc func onEndingMonthDoneButtonPushed() {
         let month = endingMonthYearPicker.selectedRow(inComponent: 0) + 1
         let year = endingMonthYearPicker.selectedRow(inComponent: 1) + 2018
-        endingTimeTextField.text = "\(month)/\(year)"
+        if CalendarHelper.compareDateFromString(currentBeginningMonth, "\(month)/\(year)") == .less {
+            endingTimeTextField.text = "\(month)/\(year)"
+            currentEndingMonth = "\(month)/\(year)"
+            reloadDataForTableView(type: currentType, cate: currentCate, fromMonth: currentBeginningMonth, toMonth: currentEndingMonth)
+        }
+        endingTimeTextField.resignFirstResponder()
+    }
+    
+    @objc func onEndingCancelButtonPushed() {
         endingTimeTextField.resignFirstResponder()
     }
     
     weak var actionToEnable: UIAlertAction!
     
     @IBAction func onChangeButtonPushed(_ sender: UIButton) {
-        
         let alert = UIAlertController(title: "Budget", message: "Enter your budget for a month.", preferredStyle: UIAlertControllerStyle.alert)
-        
         
         alert.addTextField(configurationHandler: {(textField: UITextField) in
             textField.placeholder = "e.g. 700000 (0 if not)"
@@ -122,11 +190,40 @@ class SummaryViewController: UIViewController {
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
             
         })
-        
         let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (_) -> Void in
             let textfield = alert.textFields!.first!
             
-            print(textfield.text ?? "Nothing")
+            let newBudget = Int(textfield.text!)
+            self.userDefaults.set(newBudget, forKey: budgetKeyName)
+            let spent = self.userDefaults.integer(forKey: spentKeyName)
+            self.budgetLabel.text = "\(spent)/\(newBudget ?? 0)"
+        })
+        
+        alert.addAction(cancel)
+        alert.addAction(action)
+        
+        self.actionToEnable = action
+        action.isEnabled = false
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func initBalance() {
+        let alert = UIAlertController(title: "Balance", message: "Enter your current balance.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addTextField(configurationHandler: {(textField: UITextField) in
+            textField.placeholder = "e.g. 700000"
+            textField.keyboardType = .numberPad
+            textField.addTarget(self, action: #selector(self.textChanged(_:)), for: .editingChanged)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
+            self.userDefaults.set(0, forKey: balanceKeyName)
+        })
+        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (_) -> Void in
+            let textfield = alert.textFields!.first!
+            
+            self.userDefaults.set(Int(textfield.text!), forKey: balanceKeyName)
+            self.balanceLabel.text = textfield.text
         })
         
         alert.addAction(cancel)
@@ -145,7 +242,34 @@ class SummaryViewController: UIViewController {
         }
     }
     
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let desViewController = segue.destination as! AddActivityViewController
+        desViewController.sourceViewController = self
+        if segue.identifier == "newActivitySegue" {
+            desViewController.isNew = true
+        }
+    }
+    
     // MARK: Helper
+    func reloadDataForTableView(type: String, cate: String = "", fromMonth beginningMonth: String = "", toMonth endingMonth: String = "") {
+        if type == "All" {
+            activities = FinAct.fetchData(fromMonth: beginningMonth, toMonth: endingMonth)
+        } else {
+            activities = FinAct.fetchData(fromMonth: beginningMonth, toMonth: endingMonth, type: type, cate: cate)
+        }
+        
+        activityTableView.reloadData()
+    }
+    
+    func refreshFinStatement() {
+        let balance = userDefaults.integer(forKey: balanceKeyName)
+        let spent = userDefaults.integer(forKey: spentKeyName)
+        let budget = userDefaults.integer(forKey: budgetKeyName)
+        
+        balanceLabel.text = "\(balance)"
+        budgetLabel.text = "\(spent)/\(budget)"
+    }
 }
 
 extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -199,13 +323,78 @@ extension SummaryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
 extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return activities.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: "ActivityTableViewCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityTableViewCell", for: indexPath)
+        (cell as! ActivityTableViewCell).loadContent(activity: activities[indexPath.row] as! FinAct)
+        cell.selectionStyle = .none
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let detailVC = storyBoard.instantiateViewController(withIdentifier: "DetailViewController") as! AddActivityViewController
+        detailVC.isNew = false
+        detailVC.sourceViewController = self
+        detailVC.sourceData = activities[indexPath.row] as! FinAct
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let activity = activities[indexPath.row] as! FinAct
+            let type = FinActivity.fromString(string: activity.type!)
+            var balance = userDefaults.integer(forKey: balanceKeyName)
+            var spent = userDefaults.integer(forKey: spentKeyName)
+            
+            if type == .Income {
+                balance = balance - Int(activity.cost)
+                userDefaults.set(balance, forKey: balanceKeyName)
+            } else {
+                balance = balance + Int(activity.cost)
+                userDefaults.set(balance, forKey: balanceKeyName)
+                if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), userDefaults.string(forKey: monthSpendKeyName)!) != .equal {
+                    spent = spent - Int(activity.cost)
+                    userDefaults.set(spent, forKey: spentKeyName)
+                }
+            }
+            
+            DB.MOC.delete(activities[indexPath.row])
+            activities.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            refreshFinStatement()
+            DB.save()
+        }
+    }
+    
+}
+
+extension SummaryViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "finAct")
+    }
+    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "You have no activity."
+        let attribs = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.flatGray()] as [NSAttributedStringKey : Any]
+        return NSAttributedString(string: text, attributes: attribs)
+    }
+    
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let text = "Add new finance activity by pressing Add button."
+        
+        let para = NSMutableParagraphStyle()
+        para.lineBreakMode = .byWordWrapping
+        para.alignment = .center
+        
+        let attribs = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.flatGrayColorDark(), NSAttributedStringKey.paragraphStyle: para]
+        
+        return NSAttributedString(string: text, attributes: attribs)
+    }
 }

@@ -16,7 +16,7 @@ extension FinAct {
         return NSFetchRequest<FinAct>(entityName: "FinAct")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var desc: String?
     @NSManaged public var date: NSDate?
     @NSManaged public var type: String?
     @NSManaged public var category: String?

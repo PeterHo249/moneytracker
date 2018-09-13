@@ -5,6 +5,7 @@ PODS:
   - Charts (3.1.1):
     - Charts/Core (= 3.1.1)
   - Charts/Core (3.1.1)
+  - DZNEmptyDataSet (1.8.1)
   - Eureka (4.2.0)
   - Hero (1.2.0)
   - Onboard (2.3.3)
@@ -12,6 +13,7 @@ PODS:
 DEPENDENCIES:
   - ChameleonFramework (~> 2.1)
   - Charts (~> 3.1)
+  - DZNEmptyDataSet
   - Eureka (~> 4.2)
   - Hero
   - Onboard (~> 2.3)
@@ -19,10 +21,11 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Eureka: 0748c7bbb2560130e43c7bfa83e99c98854a1f42
   Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
   Onboard: 4d6e943e20bdd6bc229df967a347dd7514bc2a6f
 
-PODFILE CHECKSUM: 5174bfb585e0c54528a2fccf8977e0ca9649201e
+PODFILE CHECKSUM: 344439c7f192034c6b5e6a49fa5f9044917a0e51
 
 COCOAPODS: 1.4.0
