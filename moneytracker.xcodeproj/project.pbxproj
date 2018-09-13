@@ -27,6 +27,10 @@
 		5D66834F213F96D7000ACCC7 /* EnumDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D66834E213F96D7000ACCC7 /* EnumDict.swift */; };
 		5D66835A213F96D7000ACCC7 /* FinAct+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D668358213F96D7000ACCC7 /* FinAct+CoreDataClass.swift */; };
 		5D66835B213F96D7000ACCC7 /* FinAct+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D668359213F96D7000ACCC7 /* FinAct+CoreDataProperties.swift */; };
+		5D999B7E2149E0CE00230FDF /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D999B7D2149E0CE00230FDF /* NotificationCenter.framework */; };
+		5D999B812149E0CE00230FDF /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D999B802149E0CE00230FDF /* TodayViewController.swift */; };
+		5D999B842149E0CE00230FDF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D999B822149E0CE00230FDF /* MainInterface.storyboard */; };
+		5D999B882149E0CE00230FDF /* trackerwidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D999B7C2149E0CE00230FDF /* trackerwidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5DBF00BE21491FC400893127 /* SavingAct+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF00BC21491FC300893127 /* SavingAct+CoreDataProperties.swift */; };
 		5DBF00BF21491FC400893127 /* SavingAct+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBF00BD21491FC300893127 /* SavingAct+CoreDataClass.swift */; };
 		6FE7BBBC34A0B5889BC033F0 /* Pods_moneytrackerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C34B95637097A61BA188508 /* Pods_moneytrackerTests.framework */; };
@@ -40,7 +44,28 @@
 			remoteGlobalIDString = 5D66831E213EB279000ACCC7;
 			remoteInfo = moneytracker;
 		};
+		5D999B862149E0CE00230FDF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5D668317213EB279000ACCC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D999B7B2149E0CE00230FDF;
+			remoteInfo = trackerwidget;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5D999B8C2149E0CE00230FDF /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5D999B882149E0CE00230FDF /* trackerwidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3432956D2FCC61F01DB3EECE /* Pods-moneytrackerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytrackerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-moneytrackerTests/Pods-moneytrackerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +94,12 @@
 		5D66834E213F96D7000ACCC7 /* EnumDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumDict.swift; sourceTree = "<group>"; };
 		5D668358213F96D7000ACCC7 /* FinAct+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FinAct+CoreDataClass.swift"; path = "/Users/peterho/Desktop/moneytracker/moneytracker/Model/FinAct+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		5D668359213F96D7000ACCC7 /* FinAct+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FinAct+CoreDataProperties.swift"; path = "/Users/peterho/Desktop/moneytracker/moneytracker/Model/FinAct+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		5D999B7C2149E0CE00230FDF /* trackerwidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = trackerwidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D999B7D2149E0CE00230FDF /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		5D999B802149E0CE00230FDF /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		5D999B832149E0CE00230FDF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		5D999B852149E0CE00230FDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D999B8D2149E6E600230FDF /* trackerwidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = trackerwidget.entitlements; sourceTree = "<group>"; };
 		5DBF00BC21491FC300893127 /* SavingAct+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SavingAct+CoreDataProperties.swift"; path = "/Users/peterho/Desktop/moneytracker/moneytracker/Model/SavingAct+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		5DBF00BD21491FC300893127 /* SavingAct+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SavingAct+CoreDataClass.swift"; path = "/Users/peterho/Desktop/moneytracker/moneytracker/Model/SavingAct+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		78D6010F0D3CF65A5FA6EC95 /* Pods-moneytrackerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-moneytrackerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-moneytrackerTests/Pods-moneytrackerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +125,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5D999B792149E0CE00230FDF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D999B7E2149E0CE00230FDF /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,6 +141,7 @@
 			children = (
 				C4217279620035212F480B88 /* Pods_moneytracker.framework */,
 				8C34B95637097A61BA188508 /* Pods_moneytrackerTests.framework */,
+				5D999B7D2149E0CE00230FDF /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,6 +151,7 @@
 			children = (
 				5D668321213EB279000ACCC7 /* moneytracker */,
 				5D668339213EB284000ACCC7 /* moneytrackerTests */,
+				5D999B7F2149E0CE00230FDF /* trackerwidget */,
 				5D668320213EB279000ACCC7 /* Products */,
 				E7470CA38AE6FC06DC37767B /* Pods */,
 				55E8250F4C3A7368892449AB /* Frameworks */,
@@ -122,6 +163,7 @@
 			children = (
 				5D66831F213EB279000ACCC7 /* moneytracker.app */,
 				5D668336213EB284000ACCC7 /* moneytrackerTests.xctest */,
+				5D999B7C2149E0CE00230FDF /* trackerwidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,6 +238,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		5D999B7F2149E0CE00230FDF /* trackerwidget */ = {
+			isa = PBXGroup;
+			children = (
+				5D999B8D2149E6E600230FDF /* trackerwidget.entitlements */,
+				5D999B802149E0CE00230FDF /* TodayViewController.swift */,
+				5D999B822149E0CE00230FDF /* MainInterface.storyboard */,
+				5D999B852149E0CE00230FDF /* Info.plist */,
+			);
+			path = trackerwidget;
+			sourceTree = "<group>";
+		};
 		E7470CA38AE6FC06DC37767B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,10 +273,12 @@
 				5D66831D213EB279000ACCC7 /* Resources */,
 				EDD9CA2954EEFFB36CFF9CBC /* [CP] Embed Pods Frameworks */,
 				20A103ABC9E3B56171AE99B6 /* [CP] Copy Pods Resources */,
+				5D999B8C2149E0CE00230FDF /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5D999B872149E0CE00230FDF /* PBXTargetDependency */,
 			);
 			name = moneytracker;
 			productName = moneytracker;
@@ -251,6 +306,23 @@
 			productReference = 5D668336213EB284000ACCC7 /* moneytrackerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5D999B7B2149E0CE00230FDF /* trackerwidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D999B8B2149E0CE00230FDF /* Build configuration list for PBXNativeTarget "trackerwidget" */;
+			buildPhases = (
+				5D999B782149E0CE00230FDF /* Sources */,
+				5D999B792149E0CE00230FDF /* Frameworks */,
+				5D999B7A2149E0CE00230FDF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = trackerwidget;
+			productName = trackerwidget;
+			productReference = 5D999B7C2149E0CE00230FDF /* trackerwidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -273,6 +345,14 @@
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = 5D66831E213EB279000ACCC7;
 					};
+					5D999B7B2149E0CE00230FDF = {
+						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = 5D66831A213EB279000ACCC7 /* Build configuration list for PBXProject "moneytracker" */;
@@ -290,6 +370,7 @@
 			targets = (
 				5D66831E213EB279000ACCC7 /* moneytracker */,
 				5D668335213EB284000ACCC7 /* moneytrackerTests */,
+				5D999B7B2149E0CE00230FDF /* trackerwidget */,
 			);
 		};
 /* End PBXProject section */
@@ -309,6 +390,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5D999B7A2149E0CE00230FDF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D999B842149E0CE00230FDF /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +548,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5D999B782149E0CE00230FDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D999B812149E0CE00230FDF /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -466,6 +563,11 @@
 			isa = PBXTargetDependency;
 			target = 5D66831E213EB279000ACCC7 /* moneytracker */;
 			targetProxy = 5D668337213EB284000ACCC7 /* PBXContainerItemProxy */;
+		};
+		5D999B872149E0CE00230FDF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5D999B7B2149E0CE00230FDF /* trackerwidget */;
+			targetProxy = 5D999B862149E0CE00230FDF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -484,6 +586,14 @@
 				5D66832F213EB283000ACCC7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5D999B822149E0CE00230FDF /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5D999B832149E0CE00230FDF /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -607,6 +717,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AF338F2C162B849FEE365878 /* Pods-moneytracker.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = moneytracker/moneytracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -627,6 +738,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44C83FCF76DC59792E5EB6EF /* Pods-moneytracker.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = moneytracker/moneytracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -687,6 +799,46 @@
 			};
 			name = Release;
 		};
+		5D999B892149E0CE00230FDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = trackerwidget/trackerwidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C562YP6H2C;
+				INFOPLIST_FILE = trackerwidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = peterho.moneytracker.trackerwidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5D999B8A2149E0CE00230FDF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = trackerwidget/trackerwidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C562YP6H2C;
+				INFOPLIST_FILE = trackerwidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = peterho.moneytracker.trackerwidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -713,6 +865,15 @@
 			buildConfigurations = (
 				5D668343213EB284000ACCC7 /* Debug */,
 				5D668344213EB284000ACCC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5D999B8B2149E0CE00230FDF /* Build configuration list for PBXNativeTarget "trackerwidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D999B892149E0CE00230FDF /* Debug */,
+				5D999B8A2149E0CE00230FDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -18,14 +18,14 @@ class SummaryViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        if UserDefaults.standard.bool(forKey: "user_balance_initialized") == false {
+        if userDefaults.bool(forKey: "user_balance_initialized") == false {
             initBalance()
-            UserDefaults.standard.set(true, forKey: "user_balance_initialized")
+            userDefaults.set(true, forKey: "user_balance_initialized")
         }
         
-        let balance = UserDefaults.standard.integer(forKey: balanceKeyName)
-        let spent = UserDefaults.standard.integer(forKey: spentKeyName)
-        let budget = UserDefaults.standard.integer(forKey: budgetKeyName)
+        let balance = userDefaults.integer(forKey: balanceKeyName)
+        let spent = userDefaults.integer(forKey: spentKeyName)
+        let budget = userDefaults.integer(forKey: budgetKeyName)
         balanceLabel.text = "\(balance)"
         budgetLabel.text = "\(spent)/\(budget)"
         
@@ -115,6 +115,7 @@ class SummaryViewController: UIViewController {
     let typeRef = ["All", "Income", "Expense"]
     let cateRef = [["All"],["Salary", "Other"],["Food", "Travel", "Vehicle", "Utility", "Miscellaneous"]]
     var cates: [String]!
+    let userDefaults = UserDefaults(suiteName: "group.peterho.moneytracker")!
     
     // MARK: Action
     @IBAction func onTapRecognized(_ sender: UITapGestureRecognizer) {
@@ -193,8 +194,8 @@ class SummaryViewController: UIViewController {
             let textfield = alert.textFields!.first!
             
             let newBudget = Int(textfield.text!)
-            UserDefaults.standard.set(newBudget, forKey: budgetKeyName)
-            let spent = UserDefaults.standard.integer(forKey: spentKeyName)
+            self.userDefaults.set(newBudget, forKey: budgetKeyName)
+            let spent = self.userDefaults.integer(forKey: spentKeyName)
             self.budgetLabel.text = "\(spent)/\(newBudget ?? 0)"
         })
         
@@ -216,12 +217,12 @@ class SummaryViewController: UIViewController {
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (_) -> Void in
-            UserDefaults.standard.set(0, forKey: balanceKeyName)
+            self.userDefaults.set(0, forKey: balanceKeyName)
         })
         let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (_) -> Void in
             let textfield = alert.textFields!.first!
             
-            UserDefaults.standard.set(Int(textfield.text!), forKey: balanceKeyName)
+            self.userDefaults.set(Int(textfield.text!), forKey: balanceKeyName)
             self.balanceLabel.text = textfield.text
         })
         
@@ -262,9 +263,9 @@ class SummaryViewController: UIViewController {
     }
     
     func refreshFinStatement() {
-        let balance = UserDefaults.standard.integer(forKey: balanceKeyName)
-        let spent = UserDefaults.standard.integer(forKey: spentKeyName)
-        let budget = UserDefaults.standard.integer(forKey: budgetKeyName)
+        let balance = userDefaults.integer(forKey: balanceKeyName)
+        let spent = userDefaults.integer(forKey: spentKeyName)
+        let budget = userDefaults.integer(forKey: budgetKeyName)
         
         balanceLabel.text = "\(balance)"
         budgetLabel.text = "\(spent)/\(budget)"
@@ -349,18 +350,18 @@ extension SummaryViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             let activity = activities[indexPath.row] as! FinAct
             let type = FinActivity.fromString(string: activity.type!)
-            var balance = UserDefaults.standard.integer(forKey: balanceKeyName)
-            var spent = UserDefaults.standard.integer(forKey: spentKeyName)
+            var balance = userDefaults.integer(forKey: balanceKeyName)
+            var spent = userDefaults.integer(forKey: spentKeyName)
             
             if type == .Income {
                 balance = balance - Int(activity.cost)
-                UserDefaults.standard.set(balance, forKey: balanceKeyName)
+                userDefaults.set(balance, forKey: balanceKeyName)
             } else {
                 balance = balance + Int(activity.cost)
-                UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) != .equal {
+                userDefaults.set(balance, forKey: balanceKeyName)
+                if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: activity.date! as Date, format: "MM/yyyy"), userDefaults.string(forKey: monthSpendKeyName)!) != .equal {
                     spent = spent - Int(activity.cost)
-                    UserDefaults.standard.set(spent, forKey: spentKeyName)
+                    userDefaults.set(spent, forKey: spentKeyName)
                 }
             }
             

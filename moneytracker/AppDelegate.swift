@@ -18,22 +18,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let isInitInfo = UserDefaults.standard.bool(forKey: "user_info_initialized")
+        let userDefaults = UserDefaults(suiteName: "group.peterho.moneytracker")!
+        let isInitInfo = userDefaults.bool(forKey: "user_info_initialized")
         let now = Date()
         let calendar = Calendar.current
         if isInitInfo == false {
-            UserDefaults.standard.set(0, forKey: balanceKeyName)
-            UserDefaults.standard.set(0, forKey: budgetKeyName)
-            UserDefaults.standard.set(0, forKey: savingKeyName)
-            UserDefaults.standard.set(0, forKey: spentKeyName)
-            UserDefaults.standard.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: monthSpendKeyName)
-            UserDefaults.standard.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: savingMonthKeyName)
-            UserDefaults.standard.set([0, 0, 0, 0, 0], forKey: savingHistoryKeyName)
-            UserDefaults.standard.set(true, forKey: "user_info_initialized")
+            userDefaults.set(0, forKey: balanceKeyName)
+            userDefaults.set(0, forKey: budgetKeyName)
+            userDefaults.set(0, forKey: savingKeyName)
+            userDefaults.set(0, forKey: spentKeyName)
+            userDefaults.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: monthSpendKeyName)
+            userDefaults.set(CalendarHelper.getString(fromDate: now, format: "MM/yyyy"), forKey: savingMonthKeyName)
+            userDefaults.set([0, 0, 0, 0, 0], forKey: savingHistoryKeyName)
+            userDefaults.set(true, forKey: "user_info_initialized")
         } else {
-            if CalendarHelper.compareDateFromString(UserDefaults.standard.string(forKey: monthSpendKeyName)!, CalendarHelper.getString(fromDate: now, format: "MM/yyyy")) != .equal {
-                UserDefaults.standard.set(0, forKey: spentKeyName)
-                UserDefaults.standard.set(calendar.component(.month, from: now), forKey: monthSpendKeyName)
+            if CalendarHelper.compareDateFromString(userDefaults.string(forKey: monthSpendKeyName)!, CalendarHelper.getString(fromDate: now, format: "MM/yyyy")) != .equal {
+                userDefaults.set(0, forKey: spentKeyName)
+                userDefaults.set(calendar.component(.month, from: now), forKey: monthSpendKeyName)
             }
         }
         

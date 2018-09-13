@@ -32,10 +32,11 @@ class SavingViewController: UIViewController {
     @IBOutlet weak var accountLabel: UILabel!
     
     var activities:[NSManagedObject] = []
+    let userDefaults = UserDefaults(suiteName: "group.peterho.moneytracker")!
     
     // MARK: Helper
     func refreshSavingLabel() {
-        accountLabel.text = "\(UserDefaults.standard.integer(forKey: savingKeyName))"
+        accountLabel.text = "\(userDefaults.integer(forKey: savingKeyName))"
     }
     
     func reloadDataForTableView() {
@@ -70,14 +71,14 @@ extension SavingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        var saving = UserDefaults.standard.integer(forKey: savingKeyName)
+        var saving = userDefaults.integer(forKey: savingKeyName)
         if editingStyle == .delete {
             if SavingActivity.fromString(string: (activities[indexPath.row] as! SavingAct).type!) == .Deposit {
                 saving -= Int((activities[indexPath.row] as! SavingAct).cost)
             } else {
                 saving += Int((activities[indexPath.row] as! SavingAct).cost)
             }
-            UserDefaults.standard.set(saving, forKey: savingKeyName)
+            userDefaults.set(saving, forKey: savingKeyName)
             
             DB.MOC.delete(activities[indexPath.row])
             activities.remove(at: indexPath.row)

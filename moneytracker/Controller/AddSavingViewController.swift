@@ -12,6 +12,7 @@ import  Eureka
 class AddSavingViewController: FormViewController {
     
     let tags = FormTag()
+    let userDefaults = UserDefaults(suiteName: "group.peterho.moneytracker")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,7 +112,7 @@ class AddSavingViewController: FormViewController {
             let rateRow:DecimalRow = form.rowBy(tag: tags.intRateTag)!
             let periodRow:PushRow<String> = form.rowBy(tag: tags.periodTag)!
             
-            var currentSaving = UserDefaults.standard.integer(forKey: savingKeyName)
+            var currentSaving = userDefaults.integer(forKey: savingKeyName)
             if isNew{
                 let savingActivity = SavingAct.create() as! SavingAct
                 savingActivity.desc = descRow.value
@@ -129,7 +130,7 @@ class AddSavingViewController: FormViewController {
                 } else {
                     currentSaving -= costRow.value!
                 }
-                UserDefaults.standard.set(currentSaving, forKey: savingKeyName)
+                userDefaults.set(currentSaving, forKey: savingKeyName)
                 
                 DB.save()
                 (sourceViewController as! SavingViewController).reloadDataForTableView()

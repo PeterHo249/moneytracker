@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="trackerwidget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7t-Xv-aH3">
+                                <rect key="frame" x="10" y="15" width="66" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qul-YA-Egg">
+                                <rect key="frame" x="10" y="36" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spent:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u86-jC-zuu">
+                                <rect key="frame" x="260" y="15" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LvD-2Y-AFb">
+                                <rect key="frame" x="268" y="36" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.59999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="npA-iL-YpO">
+                                <rect key="frame" x="20" y="75" width="280" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="BTB-7S-4ua"/>
+                                    <constraint firstAttribute="width" constant="280" id="TJS-8c-UHj"/>
+                                </constraints>
+                                <color key="progressTintColor" red="1" green="0.26432063490000002" blue="0.12925855410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </progressView>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="LvD-2Y-AFb" secondAttribute="trailing" constant="10" id="BQv-tY-0Tu"/>
+                            <constraint firstItem="u86-jC-zuu" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="15" id="Epd-86-eW6"/>
+                            <constraint firstItem="v7t-Xv-aH3" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="15" id="ICO-r6-7Hr"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="bottom" secondItem="npA-iL-YpO" secondAttribute="bottom" constant="20" id="MTy-6N-gUp"/>
+                            <constraint firstItem="Qul-YA-Egg" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="MzH-x6-vos"/>
+                            <constraint firstItem="npA-iL-YpO" firstAttribute="centerX" secondItem="ssy-KU-ocm" secondAttribute="centerX" id="YCh-h6-2mt"/>
+                            <constraint firstItem="v7t-Xv-aH3" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="10" id="bF9-kS-XvV"/>
+                            <constraint firstItem="Qul-YA-Egg" firstAttribute="top" secondItem="v7t-Xv-aH3" secondAttribute="bottom" id="de5-Ti-aQa"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="u86-jC-zuu" secondAttribute="trailing" constant="10" id="jMg-bg-63X"/>
+                            <constraint firstItem="LvD-2Y-AFb" firstAttribute="top" secondItem="u86-jC-zuu" secondAttribute="bottom" id="qGv-uh-R0o"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="yjx-Wr-DHW" appends="YES" id="j5H-f0-aa0"/>
+                        </connections>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="100"/>
+                    <connections>
+                        <outlet property="balanceLabel" destination="Qul-YA-Egg" id="Rx7-k3-ffG"/>
+                        <outlet property="spentLabel" destination="LvD-2Y-AFb" id="FjJ-6L-fIz"/>
+                        <outlet property="spentProgress" destination="npA-iL-YpO" id="0Po-8G-yIY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="yjx-Wr-DHW">
+                    <connections>
+                        <action selector="onTapRecognized:" destination="M4Y-Lb-cyx" id="ua4-ya-fs9"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-99.200000000000003" y="117.84107946026987"/>
+        </scene>
+    </scenes>
+</document>

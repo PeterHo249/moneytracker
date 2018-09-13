@@ -27,6 +27,7 @@ class AddActivityViewController: FormViewController {
     let typeRef = ["Income", "Expense"]
     let cateRef = [["Salary", "Other"],["Food", "Travel", "Vehicle", "Utility", "Miscellaneous"]]
     var cates: [String] = []
+    let userDefaults = UserDefaults(suiteName: "group.peterho.moneytracker")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,8 +110,8 @@ class AddActivityViewController: FormViewController {
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
         } else {
-            var balance = UserDefaults.standard.integer(forKey: balanceKeyName)
-            var spent = UserDefaults.standard.integer(forKey: spentKeyName)
+            var balance = userDefaults.integer(forKey: balanceKeyName)
+            var spent = userDefaults.integer(forKey: spentKeyName)
             
             let descRow:TextRow = form.rowBy(tag: tags.descTag)!
             let costRow:IntRow = form.rowBy(tag: tags.costTag)!
@@ -130,10 +131,10 @@ class AddActivityViewController: FormViewController {
                         newActicity.category = cateRow.value
                         
                         balance = balance - cost
-                        UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                        if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) == .equal {
+                        userDefaults.set(balance, forKey: balanceKeyName)
+                        if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), userDefaults.string(forKey: monthSpendKeyName)!) == .equal {
                             spent = spent + cost
-                            UserDefaults.standard.set(spent, forKey: spentKeyName)
+                            userDefaults.set(spent, forKey: spentKeyName)
                         }
                         
                         DB.save()
@@ -150,7 +151,7 @@ class AddActivityViewController: FormViewController {
                     }
                 } else { // Add new income
                     balance = balance + cost
-                    UserDefaults.standard.set(balance, forKey: balanceKeyName)
+                    userDefaults.set(balance, forKey: balanceKeyName)
                     
                     let newActicity = FinAct.create() as! FinAct
                     newActicity.desc = descRow.value
@@ -182,14 +183,14 @@ class AddActivityViewController: FormViewController {
                             sourceData.category = cateRow.value
                             
                             balance = balance - costDiff
-                            UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                            if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) == .equal {
+                            userDefaults.set(balance, forKey: balanceKeyName)
+                            if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), userDefaults.string(forKey: monthSpendKeyName)!) == .equal {
                                 if CalendarHelper.compareDateFromString(oldMonth, month) != .equal {
                                     spent = spent + cost
                                 } else {
                                     spent = spent + costDiff
                                 }
-                                UserDefaults.standard.set(spent, forKey: spentKeyName)
+                                userDefaults.set(spent, forKey: spentKeyName)
                             }
                             
                             DB.save()
@@ -206,7 +207,7 @@ class AddActivityViewController: FormViewController {
                         }
                     } else {
                         balance = balance + costDiff
-                        UserDefaults.standard.set(balance, forKey: balanceKeyName)
+                        userDefaults.set(balance, forKey: balanceKeyName)
                         
                         sourceData.desc = descRow.value
                         sourceData.cost = Int32(costRow.value!)
@@ -230,14 +231,14 @@ class AddActivityViewController: FormViewController {
                             sourceData.category = cateRow.value
                             
                             balance = balance - cost
-                            UserDefaults.standard.set(balance, forKey: balanceKeyName)
-                            if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), UserDefaults.standard.string(forKey: monthSpendKeyName)!) == .equal {
+                            userDefaults.set(balance, forKey: balanceKeyName)
+                            if CalendarHelper.compareDateFromString(CalendarHelper.getString(fromDate: dateRow.value!, format: "MM/yyyy"), userDefaults.string(forKey: monthSpendKeyName)!) == .equal {
                                 if CalendarHelper.compareDateFromString(oldMonth, month) != .equal {
                                     spent = spent + cost
                                 } else {
                                     spent = spent + costDiff
                                 }
-                                UserDefaults.standard.set(spent, forKey: spentKeyName)
+                                userDefaults.set(spent, forKey: spentKeyName)
                             }
                             
                             DB.save()
@@ -254,7 +255,7 @@ class AddActivityViewController: FormViewController {
                         }
                     } else {
                         balance = balance + oldCost + cost
-                        UserDefaults.standard.set(balance, forKey: balanceKeyName)
+                        userDefaults.set(balance, forKey: balanceKeyName)
                         
                         sourceData.desc = descRow.value
                         sourceData.cost = Int32(costRow.value!)

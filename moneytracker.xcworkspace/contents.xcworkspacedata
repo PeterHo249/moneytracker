@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/peterho/Desktop/moneytracker/moneytracker/Model/SavingAct+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/peterho/Desktop/moneytracker/moneytracker/Model/SavingAct+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:moneytracker.xcodeproj">
    </FileRef>
    <FileRef
